@@ -10,12 +10,12 @@ namespace SportsWorld.Models
     {
         [Key]
         [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int TeamID { get; set; }
 
         [Key]
         [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int UserID { get; set; }
+        public string UserID { get; set; }
 
         public virtual Team Team { get; set; }
     }

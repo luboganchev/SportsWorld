@@ -15,8 +15,7 @@ namespace SportsWorld.Models
 
         [Key]
         [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int UserID { get; set; }
+        public string UserID { get; set; }
 
         public virtual GameEvent GameEvent { get; set; }
     }

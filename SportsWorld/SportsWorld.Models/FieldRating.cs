@@ -14,7 +14,9 @@ namespace SportsWorld.Models
 
         public int FieldID { get; set; }
 
-        public int UserID { get; set; }
+        [Required]
+        [StringLength(128)]
+        public string UserID { get; set; }
 
         public DateTime RateOn { get; set; }
 

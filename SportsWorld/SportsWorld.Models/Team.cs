@@ -22,7 +22,9 @@ namespace SportsWorld.Models
 
         public DateTime DateCreated { get; set; }
 
-        public int FounderID { get; set; }
+        [Required]
+        [StringLength(128)]
+        public string FounderID { get; set; }
 
         public int Wins { get; set; }
 

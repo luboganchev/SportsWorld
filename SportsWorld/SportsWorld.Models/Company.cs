@@ -30,6 +30,10 @@ namespace SportsWorld.Models
 
         public int? ImageID { get; set; }
 
+        [Required]
+        [StringLength(128)]
+        public string FounderID { get; set; }
+
         public virtual Image Image { get; set; }
 
         public virtual ICollection<Field> Fields { get; set; }

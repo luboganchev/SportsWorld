@@ -1,10 +1,11 @@
-namespace SportsWorld.Models
+namespace SportsWorld.Data
 {
     using Microsoft.AspNet.Identity.EntityFramework;
     using SportsWorld.Data.Migrations;
+    using SportsWorld.Models;
     using System.Data.Entity;
 
-    public class SportsWorldDbContext : IdentityDbContext<AppUser>
+    public class SportsWorldDbContext : IdentityDbContext<AppUser>, ISportsWorldDbContext
     {
         public SportsWorldDbContext()
             : base("SportsWorld", throwIfV1Schema: false)
@@ -12,24 +13,50 @@ namespace SportsWorld.Models
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<SportsWorldDbContext, Configuration>());
         }
 
-        public virtual DbSet<CardInfo> CardInfoes { get; set; }
-        public virtual DbSet<City> Cities { get; set; }
-        public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<Company> Companies { get; set; }
-        public virtual DbSet<Country> Countries { get; set; }
-        public virtual DbSet<FieldRating> FieldRatings { get; set; }
-        public virtual DbSet<Field> Fields { get; set; }
-        public virtual DbSet<GameEvent> GameEvents { get; set; }
-        public virtual DbSet<Image> Images { get; set; }
-        public virtual DbSet<Message> Messages { get; set; }
-        public virtual DbSet<Participant> Participants { get; set; }
-        public virtual DbSet<TeamMember> TeamMembers { get; set; }
-        public virtual DbSet<Team> Teams { get; set; }
-        public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual IDbSet<CardInfo> CardInfoes { get; set; }
+
+        public virtual IDbSet<City> Cities { get; set; }
+
+        public virtual IDbSet<Comment> Comments { get; set; }
+
+        public virtual IDbSet<Company> Companies { get; set; }
+
+        public virtual IDbSet<Country> Countries { get; set; }
+
+        public virtual IDbSet<FieldRating> FieldRatings { get; set; }
+
+        public virtual IDbSet<Field> Fields { get; set; }
+
+        public virtual IDbSet<GameEvent> GameEvents { get; set; }
+
+        public virtual IDbSet<Image> Images { get; set; }
+
+        public virtual IDbSet<Message> Messages { get; set; }
+
+        public virtual IDbSet<Participant> Participants { get; set; }
+
+        public virtual IDbSet<TeamMember> TeamMembers { get; set; }
+
+        public virtual IDbSet<Team> Teams { get; set; }
+
+        public virtual IDbSet<Transaction> Transactions { get; set; }
 
         public static SportsWorldDbContext Create()
         {
             return new SportsWorldDbContext();
+        }
+
+        public new IDbSet<T> Set<T>() where T : class
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public DbContext DbContext
+        {
+            get
+            {
+                return this;
+            }
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

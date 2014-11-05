@@ -11,7 +11,9 @@ namespace SportsWorld.Models
     {
         public int ID { get; set; }
 
-        public int UserID { get; set; }
+        [Required]
+        [StringLength(128)]
+        public string UserID { get; set; }
 
         public int GameEventID { get; set; }
 

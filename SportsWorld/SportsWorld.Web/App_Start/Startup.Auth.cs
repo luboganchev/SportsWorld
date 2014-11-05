@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
-using SportsWorld.Web.Models;
+using SportsWorld.Data;
 using SportsWorld.Models;
+using System;
 
 namespace SportsWorld.Web
 {

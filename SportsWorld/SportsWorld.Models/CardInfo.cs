@@ -24,6 +24,8 @@ namespace SportsWorld.Models
         [StringLength(10)]
         public string CVV { get; set; }
 
-        public int UserID { get; set; }
+        [Required]
+        [StringLength(128)]
+        public string UserID { get; set; }
     }
 }

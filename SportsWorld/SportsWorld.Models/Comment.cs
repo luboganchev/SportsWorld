@@ -15,7 +15,9 @@ namespace SportsWorld.Models
 
         public DateTime PostedOn { get; set; }
 
-        public int AuthorID { get; set; }
+        [Required]
+        [StringLength(128)]
+        public string AuthorID { get; set; }
 
         public int FieldID { get; set; }
 

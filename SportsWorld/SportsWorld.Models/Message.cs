@@ -13,8 +13,12 @@ namespace SportsWorld.Models
         [Required]
         public string Content { get; set; }
 
-        public int SenderID { get; set; }
+        [Required]
+        [StringLength(128)]
+        public string SenderID { get; set; }
 
-        public int RecipientID { get; set; }
+        [Required]
+        [StringLength(128)]
+        public string RecipientID { get; set; }
     }
 }

@@ -25,7 +25,9 @@ namespace SportsWorld.Models
 
         public int FieldID { get; set; }
 
-        public int CreatorID { get; set; }
+        [Required]
+        [StringLength(128)]
+        public string CreatorID { get; set; }
 
         public virtual Field Field { get; set; }
 
