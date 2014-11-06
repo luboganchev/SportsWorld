@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportsWorld.Web.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,8 @@ namespace SportsWorld.Web
     {
         protected void Application_Start()
         {
+            ViewEngineConfig.RegisterViewEngines(ViewEngines.Engines);
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
