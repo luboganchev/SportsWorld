@@ -39,7 +39,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Glimpse.Ado">
+      <HintPath>..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.AspNet">
+      <HintPath>..\packages\Glimpse.AspNet.1.8.0\lib\net45\Glimpse.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Core">
+      <HintPath>..\packages\Glimpse.1.8.6\lib\net45\Glimpse.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.EF6">
+      <HintPath>..\packages\Glimpse.EF6.1.6.5\lib\net45\Glimpse.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Mvc5">
+      <HintPath>..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -92,6 +116,9 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -156,11 +183,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -176,8 +205,111 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\admin.jpg" />
+    <Content Include="Images\default.png" />
+    <Content Include="Images\Users\1.jpg" />
+    <Content Include="Images\Users\10.jpg" />
+    <Content Include="Images\Users\100.jpg" />
+    <Content Include="Images\Users\11.jpg" />
+    <Content Include="Images\Users\12.jpg" />
+    <Content Include="Images\Users\13.jpg" />
+    <Content Include="Images\Users\14.jpg" />
+    <Content Include="Images\Users\15.jpg" />
+    <Content Include="Images\Users\16.jpg" />
+    <Content Include="Images\Users\17.jpg" />
+    <Content Include="Images\Users\18.jpg" />
+    <Content Include="Images\Users\19.jpg" />
+    <Content Include="Images\Users\2.jpg" />
+    <Content Include="Images\Users\20.jpg" />
+    <Content Include="Images\Users\21.jpg" />
+    <Content Include="Images\Users\22.jpg" />
+    <Content Include="Images\Users\23.jpg" />
+    <Content Include="Images\Users\24.jpg" />
+    <Content Include="Images\Users\25.jpg" />
+    <Content Include="Images\Users\26.jpg" />
+    <Content Include="Images\Users\27.jpg" />
+    <Content Include="Images\Users\28.jpg" />
+    <Content Include="Images\Users\29.jpg" />
+    <Content Include="Images\Users\3.jpg" />
+    <Content Include="Images\Users\30.jpg" />
+    <Content Include="Images\Users\31.jpg" />
+    <Content Include="Images\Users\32.jpg" />
+    <Content Include="Images\Users\33.jpg" />
+    <Content Include="Images\Users\34.jpg" />
+    <Content Include="Images\Users\35.jpg" />
+    <Content Include="Images\Users\36.jpg" />
+    <Content Include="Images\Users\37.jpg" />
+    <Content Include="Images\Users\38.jpg" />
+    <Content Include="Images\Users\39.jpg" />
+    <Content Include="Images\Users\4.jpg" />
+    <Content Include="Images\Users\40.jpg" />
+    <Content Include="Images\Users\41.jpg" />
+    <Content Include="Images\Users\42.jpg" />
+    <Content Include="Images\Users\43.jpg" />
+    <Content Include="Images\Users\44.jpg" />
+    <Content Include="Images\Users\45.jpg" />
+    <Content Include="Images\Users\46.jpg" />
+    <Content Include="Images\Users\47.jpg" />
+    <Content Include="Images\Users\48.jpg" />
+    <Content Include="Images\Users\49.jpg" />
+    <Content Include="Images\Users\5.jpg" />
+    <Content Include="Images\Users\50.jpg" />
+    <Content Include="Images\Users\51.jpg" />
+    <Content Include="Images\Users\52.jpg" />
+    <Content Include="Images\Users\53.jpg" />
+    <Content Include="Images\Users\54.jpg" />
+    <Content Include="Images\Users\55.jpg" />
+    <Content Include="Images\Users\56.jpg" />
+    <Content Include="Images\Users\57.jpg" />
+    <Content Include="Images\Users\58.jpg" />
+    <Content Include="Images\Users\59.jpg" />
+    <Content Include="Images\Users\6.jpg" />
+    <Content Include="Images\Users\60.jpg" />
+    <Content Include="Images\Users\61.jpg" />
+    <Content Include="Images\Users\62.jpg" />
+    <Content Include="Images\Users\63.jpg" />
+    <Content Include="Images\Users\64.jpg" />
+    <Content Include="Images\Users\65.jpg" />
+    <Content Include="Images\Users\66.jpg" />
+    <Content Include="Images\Users\67.jpg" />
+    <Content Include="Images\Users\68.jpg" />
+    <Content Include="Images\Users\69.jpg" />
+    <Content Include="Images\Users\7.jpg" />
+    <Content Include="Images\Users\70.jpg" />
+    <Content Include="Images\Users\71.jpg" />
+    <Content Include="Images\Users\72.jpg" />
+    <Content Include="Images\Users\73.jpg" />
+    <Content Include="Images\Users\74.jpg" />
+    <Content Include="Images\Users\75.jpg" />
+    <Content Include="Images\Users\76.jpg" />
+    <Content Include="Images\Users\77.jpg" />
+    <Content Include="Images\Users\78.jpg" />
+    <Content Include="Images\Users\79.jpg" />
+    <Content Include="Images\Users\8.jpg" />
+    <Content Include="Images\Users\80.jpg" />
+    <Content Include="Images\Users\81.jpg" />
+    <Content Include="Images\Users\82.jpg" />
+    <Content Include="Images\Users\83.jpg" />
+    <Content Include="Images\Users\84.jpg" />
+    <Content Include="Images\Users\85.jpg" />
+    <Content Include="Images\Users\86.jpg" />
+    <Content Include="Images\Users\87.jpg" />
+    <Content Include="Images\Users\88.jpg" />
+    <Content Include="Images\Users\89.jpg" />
+    <Content Include="Images\Users\9.jpg" />
+    <Content Include="Images\Users\90.jpg" />
+    <Content Include="Images\Users\91.jpg" />
+    <Content Include="Images\Users\92.jpg" />
+    <Content Include="Images\Users\93.jpg" />
+    <Content Include="Images\Users\94.jpg" />
+    <Content Include="Images\Users\95.jpg" />
+    <Content Include="Images\Users\96.jpg" />
+    <Content Include="Images\Users\97.jpg" />
+    <Content Include="Images\Users\98.jpg" />
+    <Content Include="Images\Users\99.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="App_Data\countries.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -229,9 +361,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
