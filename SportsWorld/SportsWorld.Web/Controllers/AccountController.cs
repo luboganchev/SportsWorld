@@ -10,19 +10,26 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SportsWorld.Web.Models;
 using SportsWorld.Models;
+using System.Collections.Generic;
+using SportsWorld.Data;
+using SportsWorld.Web.Utils;
+using System.Web.Configuration;
+using System.Configuration;
 
 namespace SportsWorld.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        public AccountController(ISportsWorldData data)
+            : base(data)
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ISportsWorldData data)
+            : base(data)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -124,7 +131,7 @@ namespace SportsWorld.Web.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -138,12 +145,133 @@ namespace SportsWorld.Web.Controllers
             }
         }
 
+        [AllowAnonymous]
+        public ActionResult RegisterOptions()
+        {
+            var registerOptions = new HashSet<RegisterOptionsViewModel> 
+            {
+                new RegisterOptionsViewModel
+                {
+                    Action = "RegisterCompany",
+                    Title = "Company registration",
+                    Description = "Registrate your company and earn fast incomes."
+                },
+                new RegisterOptionsViewModel
+                {
+                    Action = "Register",
+                    Title = "Client registration",
+                    Description = "If you wanna practice your sport get an account."
+                }
+            };
+            return View(registerOptions);
+        }
+
+        [AllowAnonymous]
+        public ActionResult RegisterCompany()
+        {
+            var allCountries = this.data.Countries.All().ToList();
+            var model = new RegisterCompanyViewModel
+            {
+                Countries = allCountries
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterCompany(RegisterCompanyViewModel model)
+        {
+            var existingCompany = this.data.Companies.All()
+                .FirstOrDefault(company => company.Name == model.CompanyName || company.UniqueNumber == model.UniqueNumber);
+
+            if (existingCompany !=null)
+            {
+                if(existingCompany.Name == model.CompanyName)
+                {
+                    ModelState.AddModelError("CompanyName", "Company with this name already exist!");
+                }
+
+                if(existingCompany.UniqueNumber == model.UniqueNumber)
+                {
+                    ModelState.AddModelError("UniqueNumber", "Company with this unique number already exist!");
+                }
+                
+            }
+
+            if (ModelState.IsValid)
+            {
+                AppUser user = null;
+
+                try
+                {
+                    var userModel = new RegisterViewModel
+                    {
+                        Username = model.Username,
+                        CountryID = model.CountryID,
+                        Email = model.Email,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName
+                    };
+
+                    user = this.GetUserFromModel(userModel);
+
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        var currentUser = UserManager.FindByName(user.UserName);
+                        var roleresult = UserManager.AddToRole(currentUser.Id, "companyAgent");
+
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                        var company = new Company
+                        {
+                            CountryID = model.CompanyCountryID,
+                            EstablishedYear = model.EstablishedYear,
+                            Name = model.CompanyName,
+                            UniqueNumber = model.UniqueNumber,
+                            FounderID = user.Id
+                        };
+
+                        this.data.Companies.Add(company);
+                        this.data.SaveChanges();
+
+                        if (model.CompanyLogo != null)
+                        {
+                            company.Image = DataModelsHelper.GetResizedImageInstance(model.CompanyLogo);
+                        }
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                    AddErrors(result);
+                }
+                catch (InvalidOperationException exception)
+                {
+                    AddErrors(new IdentityResult(exception.Message));
+                    var allCountries = this.data.Countries.All().ToList();
+                    model.Countries = allCountries;
+
+                    return View(model);
+                }
+            }
+
+            model.Countries = this.data.Countries.All().ToList();
+            return View(model);
+        }
+
         //
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            var allCountries = this.data.Countries.All().ToList();
+            var model = new RegisterViewModel
+            {
+                Countries = allCountries
+            };
+
+            return View(model);
         }
 
         //
@@ -155,12 +283,29 @@ namespace SportsWorld.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = model.Email, Email = model.Email };
+                AppUser user = null;
+
+                try
+                {
+                    user = this.GetUserFromModel(model);
+                }
+                catch (InvalidOperationException exception)
+                {
+                    AddErrors(new IdentityResult(exception.Message));
+                    var allCountries = this.data.Countries.All().ToList();
+                    model.Countries = allCountries;
+
+                    return View(model);
+                }
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    var currentUser = UserManager.FindByName(user.UserName);
+                    var roleresult = UserManager.AddToRole(currentUser.Id, "user");
+
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -173,6 +318,7 @@ namespace SportsWorld.Web.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            model.Countries = this.data.Countries.All().ToList();
             return View(model);
         }
 
@@ -434,6 +580,25 @@ namespace SportsWorld.Web.Controllers
                 return Redirect(returnUrl);
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        private AppUser GetUserFromModel(RegisterViewModel model)
+        {
+            var user = new AppUser
+            {
+                UserName = model.Username,
+                Email = model.Email,
+                CountryID = model.CountryID,
+                FirstName = model.FirstName,
+                LastName = model.LastName
+            };
+
+            if (model.Avatar != null)
+            {
+                user.Image = DataModelsHelper.GetResizedImageInstance(model.Avatar);
+            }
+
+            return user;
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

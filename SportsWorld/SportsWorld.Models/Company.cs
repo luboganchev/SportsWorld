@@ -16,11 +16,13 @@ namespace SportsWorld.Models
         public int ID { get; set; }
 
         [Required]
+        [Index("IX_CompanyName", IsUnique = true)]
         [StringLength(50)]
         public string Name { get; set; }
 
         public int CountryID { get; set; }
 
+        [Index("IX_CompanyUniqueNumber", IsUnique = true)]
         public int UniqueNumber { get; set; }
 
         public int EstablishedYear { get; set; }

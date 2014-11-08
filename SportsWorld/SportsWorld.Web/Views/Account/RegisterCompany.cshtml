@@ -1,0 +1,81 @@
+﻿@model SportsWorld.Web.Models.RegisterCompanyViewModel
+
+<h3 class="text-center alert alert-dismissable alert-success">Company registraion</h3>
+
+@using (Html.BeginForm("RegisterCompany", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Company information</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(m => m.CompanyName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CompanyName, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.UniqueNumber, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.UniqueNumber, new { @class = "form-control", type = "number", value = "100000000", step="1", min = "100000000", max = "999999999" })
+                    @Html.ValidationMessageFor(m => m.UniqueNumber, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.CountryID, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.CompanyCountryID, new SelectList(Model.Countries, "ID", "Name").ToArray(), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.EstablishedYear, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.EstablishedYear, new { @class = "form-control", type = "number", min="1800", max="2200" })
+                    @Html.ValidationMessageFor(m => m.EstablishedYear, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.CompanyLogo, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    <input type="file" name="CompanyLogo" value="Browse" accept="image/*" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            <h3 class="panel-title">Representer information</h3>
+        </div>
+        <div class="panel-body">
+            @Html.Partial("_RegisterAccountPartial",
+                new SportsWorld.Web.Models.RegisterViewModel
+                {
+                    Avatar = Model.Avatar,
+                    ConfirmPassword = Model.ConfirmPassword,
+                    Countries = Model.Countries,
+                    CountryID = Model.CountryID,
+                    Email = Model.Email,
+                    FirstName = Model.FirstName,
+                    LastName = Model.LastName,
+                    Password = Model.Password,
+                    Username = Model.Username
+                })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-success btn-block btn-lg" value="Register" />
+        </div>
+    </div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

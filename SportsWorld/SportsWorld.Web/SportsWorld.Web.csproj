@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="Glimpse.Ado">
       <HintPath>..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
     </Reference>
@@ -120,13 +126,13 @@
     <Reference Include="WebActivatorEx">
       <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
-    <Reference Include="WebGrease">
-      <Private>True</Private>
-      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
-    </Reference>
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -188,16 +194,27 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEngineConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Infrastructure\Filters\FileSizeAttribute.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HelperExtensions.cs" />
+    <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
+    <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
+    <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BaseRegistarViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RegisterCompanyViewModel.cs" />
+    <Compile Include="Models\RegisterOptionsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\DataModelsHelper.cs" />
+    <Compile Include="Utils\HttpPostedFileWrapperExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -206,108 +223,108 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\admin.jpg" />
-    <Content Include="Images\default.png" />
-    <Content Include="Images\Users\1.jpg" />
-    <Content Include="Images\Users\10.jpg" />
-    <Content Include="Images\Users\100.jpg" />
-    <Content Include="Images\Users\11.jpg" />
-    <Content Include="Images\Users\12.jpg" />
-    <Content Include="Images\Users\13.jpg" />
-    <Content Include="Images\Users\14.jpg" />
-    <Content Include="Images\Users\15.jpg" />
-    <Content Include="Images\Users\16.jpg" />
-    <Content Include="Images\Users\17.jpg" />
-    <Content Include="Images\Users\18.jpg" />
-    <Content Include="Images\Users\19.jpg" />
-    <Content Include="Images\Users\2.jpg" />
-    <Content Include="Images\Users\20.jpg" />
-    <Content Include="Images\Users\21.jpg" />
-    <Content Include="Images\Users\22.jpg" />
-    <Content Include="Images\Users\23.jpg" />
-    <Content Include="Images\Users\24.jpg" />
-    <Content Include="Images\Users\25.jpg" />
-    <Content Include="Images\Users\26.jpg" />
-    <Content Include="Images\Users\27.jpg" />
-    <Content Include="Images\Users\28.jpg" />
-    <Content Include="Images\Users\29.jpg" />
-    <Content Include="Images\Users\3.jpg" />
-    <Content Include="Images\Users\30.jpg" />
-    <Content Include="Images\Users\31.jpg" />
-    <Content Include="Images\Users\32.jpg" />
-    <Content Include="Images\Users\33.jpg" />
-    <Content Include="Images\Users\34.jpg" />
-    <Content Include="Images\Users\35.jpg" />
-    <Content Include="Images\Users\36.jpg" />
-    <Content Include="Images\Users\37.jpg" />
-    <Content Include="Images\Users\38.jpg" />
-    <Content Include="Images\Users\39.jpg" />
-    <Content Include="Images\Users\4.jpg" />
-    <Content Include="Images\Users\40.jpg" />
-    <Content Include="Images\Users\41.jpg" />
-    <Content Include="Images\Users\42.jpg" />
-    <Content Include="Images\Users\43.jpg" />
-    <Content Include="Images\Users\44.jpg" />
-    <Content Include="Images\Users\45.jpg" />
-    <Content Include="Images\Users\46.jpg" />
-    <Content Include="Images\Users\47.jpg" />
-    <Content Include="Images\Users\48.jpg" />
-    <Content Include="Images\Users\49.jpg" />
-    <Content Include="Images\Users\5.jpg" />
-    <Content Include="Images\Users\50.jpg" />
-    <Content Include="Images\Users\51.jpg" />
-    <Content Include="Images\Users\52.jpg" />
-    <Content Include="Images\Users\53.jpg" />
-    <Content Include="Images\Users\54.jpg" />
-    <Content Include="Images\Users\55.jpg" />
-    <Content Include="Images\Users\56.jpg" />
-    <Content Include="Images\Users\57.jpg" />
-    <Content Include="Images\Users\58.jpg" />
-    <Content Include="Images\Users\59.jpg" />
-    <Content Include="Images\Users\6.jpg" />
-    <Content Include="Images\Users\60.jpg" />
-    <Content Include="Images\Users\61.jpg" />
-    <Content Include="Images\Users\62.jpg" />
-    <Content Include="Images\Users\63.jpg" />
-    <Content Include="Images\Users\64.jpg" />
-    <Content Include="Images\Users\65.jpg" />
-    <Content Include="Images\Users\66.jpg" />
-    <Content Include="Images\Users\67.jpg" />
-    <Content Include="Images\Users\68.jpg" />
-    <Content Include="Images\Users\69.jpg" />
-    <Content Include="Images\Users\7.jpg" />
-    <Content Include="Images\Users\70.jpg" />
-    <Content Include="Images\Users\71.jpg" />
-    <Content Include="Images\Users\72.jpg" />
-    <Content Include="Images\Users\73.jpg" />
-    <Content Include="Images\Users\74.jpg" />
-    <Content Include="Images\Users\75.jpg" />
-    <Content Include="Images\Users\76.jpg" />
-    <Content Include="Images\Users\77.jpg" />
-    <Content Include="Images\Users\78.jpg" />
-    <Content Include="Images\Users\79.jpg" />
-    <Content Include="Images\Users\8.jpg" />
-    <Content Include="Images\Users\80.jpg" />
-    <Content Include="Images\Users\81.jpg" />
-    <Content Include="Images\Users\82.jpg" />
-    <Content Include="Images\Users\83.jpg" />
-    <Content Include="Images\Users\84.jpg" />
-    <Content Include="Images\Users\85.jpg" />
-    <Content Include="Images\Users\86.jpg" />
-    <Content Include="Images\Users\87.jpg" />
-    <Content Include="Images\Users\88.jpg" />
-    <Content Include="Images\Users\89.jpg" />
-    <Content Include="Images\Users\9.jpg" />
-    <Content Include="Images\Users\90.jpg" />
-    <Content Include="Images\Users\91.jpg" />
-    <Content Include="Images\Users\92.jpg" />
-    <Content Include="Images\Users\93.jpg" />
-    <Content Include="Images\Users\94.jpg" />
-    <Content Include="Images\Users\95.jpg" />
-    <Content Include="Images\Users\96.jpg" />
-    <Content Include="Images\Users\97.jpg" />
-    <Content Include="Images\Users\98.jpg" />
-    <Content Include="Images\Users\99.jpg" />
+    <Content Include="Images\Seed\admin.jpg" />
+    <Content Include="Images\Seed\default.png" />
+    <Content Include="Images\Seed\Users\1.jpg" />
+    <Content Include="Images\Seed\Users\10.jpg" />
+    <Content Include="Images\Seed\Users\100.jpg" />
+    <Content Include="Images\Seed\Users\11.jpg" />
+    <Content Include="Images\Seed\Users\12.jpg" />
+    <Content Include="Images\Seed\Users\13.jpg" />
+    <Content Include="Images\Seed\Users\14.jpg" />
+    <Content Include="Images\Seed\Users\15.jpg" />
+    <Content Include="Images\Seed\Users\16.jpg" />
+    <Content Include="Images\Seed\Users\17.jpg" />
+    <Content Include="Images\Seed\Users\18.jpg" />
+    <Content Include="Images\Seed\Users\19.jpg" />
+    <Content Include="Images\Seed\Users\2.jpg" />
+    <Content Include="Images\Seed\Users\20.jpg" />
+    <Content Include="Images\Seed\Users\21.jpg" />
+    <Content Include="Images\Seed\Users\22.jpg" />
+    <Content Include="Images\Seed\Users\23.jpg" />
+    <Content Include="Images\Seed\Users\24.jpg" />
+    <Content Include="Images\Seed\Users\25.jpg" />
+    <Content Include="Images\Seed\Users\26.jpg" />
+    <Content Include="Images\Seed\Users\27.jpg" />
+    <Content Include="Images\Seed\Users\28.jpg" />
+    <Content Include="Images\Seed\Users\29.jpg" />
+    <Content Include="Images\Seed\Users\3.jpg" />
+    <Content Include="Images\Seed\Users\30.jpg" />
+    <Content Include="Images\Seed\Users\31.jpg" />
+    <Content Include="Images\Seed\Users\32.jpg" />
+    <Content Include="Images\Seed\Users\33.jpg" />
+    <Content Include="Images\Seed\Users\34.jpg" />
+    <Content Include="Images\Seed\Users\35.jpg" />
+    <Content Include="Images\Seed\Users\36.jpg" />
+    <Content Include="Images\Seed\Users\37.jpg" />
+    <Content Include="Images\Seed\Users\38.jpg" />
+    <Content Include="Images\Seed\Users\39.jpg" />
+    <Content Include="Images\Seed\Users\4.jpg" />
+    <Content Include="Images\Seed\Users\40.jpg" />
+    <Content Include="Images\Seed\Users\41.jpg" />
+    <Content Include="Images\Seed\Users\42.jpg" />
+    <Content Include="Images\Seed\Users\43.jpg" />
+    <Content Include="Images\Seed\Users\44.jpg" />
+    <Content Include="Images\Seed\Users\45.jpg" />
+    <Content Include="Images\Seed\Users\46.jpg" />
+    <Content Include="Images\Seed\Users\47.jpg" />
+    <Content Include="Images\Seed\Users\48.jpg" />
+    <Content Include="Images\Seed\Users\49.jpg" />
+    <Content Include="Images\Seed\Users\5.jpg" />
+    <Content Include="Images\Seed\Users\50.jpg" />
+    <Content Include="Images\Seed\Users\51.jpg" />
+    <Content Include="Images\Seed\Users\52.jpg" />
+    <Content Include="Images\Seed\Users\53.jpg" />
+    <Content Include="Images\Seed\Users\54.jpg" />
+    <Content Include="Images\Seed\Users\55.jpg" />
+    <Content Include="Images\Seed\Users\56.jpg" />
+    <Content Include="Images\Seed\Users\57.jpg" />
+    <Content Include="Images\Seed\Users\58.jpg" />
+    <Content Include="Images\Seed\Users\59.jpg" />
+    <Content Include="Images\Seed\Users\6.jpg" />
+    <Content Include="Images\Seed\Users\60.jpg" />
+    <Content Include="Images\Seed\Users\61.jpg" />
+    <Content Include="Images\Seed\Users\62.jpg" />
+    <Content Include="Images\Seed\Users\63.jpg" />
+    <Content Include="Images\Seed\Users\64.jpg" />
+    <Content Include="Images\Seed\Users\65.jpg" />
+    <Content Include="Images\Seed\Users\66.jpg" />
+    <Content Include="Images\Seed\Users\67.jpg" />
+    <Content Include="Images\Seed\Users\68.jpg" />
+    <Content Include="Images\Seed\Users\69.jpg" />
+    <Content Include="Images\Seed\Users\7.jpg" />
+    <Content Include="Images\Seed\Users\70.jpg" />
+    <Content Include="Images\Seed\Users\71.jpg" />
+    <Content Include="Images\Seed\Users\72.jpg" />
+    <Content Include="Images\Seed\Users\73.jpg" />
+    <Content Include="Images\Seed\Users\74.jpg" />
+    <Content Include="Images\Seed\Users\75.jpg" />
+    <Content Include="Images\Seed\Users\76.jpg" />
+    <Content Include="Images\Seed\Users\77.jpg" />
+    <Content Include="Images\Seed\Users\78.jpg" />
+    <Content Include="Images\Seed\Users\79.jpg" />
+    <Content Include="Images\Seed\Users\8.jpg" />
+    <Content Include="Images\Seed\Users\80.jpg" />
+    <Content Include="Images\Seed\Users\81.jpg" />
+    <Content Include="Images\Seed\Users\82.jpg" />
+    <Content Include="Images\Seed\Users\83.jpg" />
+    <Content Include="Images\Seed\Users\84.jpg" />
+    <Content Include="Images\Seed\Users\85.jpg" />
+    <Content Include="Images\Seed\Users\86.jpg" />
+    <Content Include="Images\Seed\Users\87.jpg" />
+    <Content Include="Images\Seed\Users\88.jpg" />
+    <Content Include="Images\Seed\Users\89.jpg" />
+    <Content Include="Images\Seed\Users\9.jpg" />
+    <Content Include="Images\Seed\Users\90.jpg" />
+    <Content Include="Images\Seed\Users\91.jpg" />
+    <Content Include="Images\Seed\Users\92.jpg" />
+    <Content Include="Images\Seed\Users\93.jpg" />
+    <Content Include="Images\Seed\Users\94.jpg" />
+    <Content Include="Images\Seed\Users\95.jpg" />
+    <Content Include="Images\Seed\Users\96.jpg" />
+    <Content Include="Images\Seed\Users\97.jpg" />
+    <Content Include="Images\Seed\Users\98.jpg" />
+    <Content Include="Images\Seed\Users\99.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Data\countries.json" />
@@ -361,8 +378,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\RegisterOptions.cshtml" />
+    <Content Include="Views\Account\RegisterCompany.cshtml" />
+    <Content Include="Views\Account\_RegisterAccountPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Base\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -408,6 +430,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

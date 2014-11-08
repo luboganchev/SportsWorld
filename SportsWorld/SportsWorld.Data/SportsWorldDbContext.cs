@@ -48,7 +48,7 @@ namespace SportsWorld.Data
 
         public new IDbSet<T> Set<T>() where T : class
         {
-            throw new System.NotImplementedException();
+            return base.Set<T>();
         }
 
         public DbContext DbContext

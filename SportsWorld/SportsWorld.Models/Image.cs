@@ -15,11 +15,13 @@ namespace SportsWorld.Models
             Teams = new HashSet<Team>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [Required]
-        public string Path { get; set; }
+        public byte[] Data { get; set; }
+
+        [Required]
+        public string Type { get; set; }
 
         public virtual ICollection<Company> Companies { get; set; }
 

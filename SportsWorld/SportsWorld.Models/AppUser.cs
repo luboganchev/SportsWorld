@@ -15,7 +15,7 @@
 
         public virtual Country Country { get; set; }
 
-        public int ImageID { get; set; }
+        public int? ImageID { get; set; }
 
         public virtual Image Image { get; set; }
 

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<SportsWorld.Web.Models.RegisterOptionsViewModel>
+
+<h3 class="text-center alert alert-dismissable alert-success">Register Options</h3>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6 col-lg-6 col-md-6">
+            <a href="~/Account/@item.Action" class="register-thumbnail">
+                <div class="thumbnail alert alert-dismissable alert-info padding-thumbnail">
+                    <div class="caption">
+                        <h1 class="text-center register-thumbnail-text" id="TitleText">@item.Title</h1>
+                        <h3 class="text-center register-thumbnail-text" id="DescriptionText">@item.Description</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>

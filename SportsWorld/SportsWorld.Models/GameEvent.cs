@@ -16,7 +16,6 @@ namespace SportsWorld.Models
             Teams = new HashSet<Team>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         public DateTime StartTime { get; set; }

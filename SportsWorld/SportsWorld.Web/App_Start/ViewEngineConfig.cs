@@ -6,8 +6,8 @@
     {
         internal static void RegisterViewEngines(ViewEngineCollection viewEngineCollection)
         {
-            ViewEngines.Engines.Clear();
-            ViewEngines.Engines.Add(new RazorViewEngine());
+            viewEngineCollection.Clear();
+            viewEngineCollection.Add(new RazorViewEngine());
         }
     }
 }

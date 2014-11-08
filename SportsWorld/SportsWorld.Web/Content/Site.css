@@ -17,8 +17,24 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
     max-width: 280px;
+}*/
+
+.register-thumbnail:hover {
+    text-decoration: none;
+}
+
+    .register-thumbnail:hover .register-thumbnail-text {
+        color: yellow;
+    }
+
+    .register-thumbnail:hover > div.thumbnail {
+        background-color: deepskyblue;
+    }
+
+.register-thumbnail-text {
+    color: white;
 }

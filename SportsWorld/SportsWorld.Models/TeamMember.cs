@@ -10,7 +10,6 @@ namespace SportsWorld.Models
     {
         [Key]
         [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int TeamID { get; set; }
 
         [Key]

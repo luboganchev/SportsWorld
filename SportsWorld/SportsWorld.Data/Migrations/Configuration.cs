@@ -44,8 +44,19 @@ namespace SportsWorld.Data.Migrations
             var userManager = new UserManager<AppUser>(userStore);
 
             // Images
-            var defaultImage = new Image { Path = "~/Images/default.png" };
-            var adminImage = new Image { Path = "~/Images/admin.jpg" };
+
+            var webProjectLocation = AppDomain.CurrentDomain.BaseDirectory;
+
+            var defaultImage = new Image
+            {
+                Data = File.ReadAllBytes(webProjectLocation + "/Images/Seed/default.png"),
+                Type = "images/png"
+            };
+            var adminImage = new Image
+            {
+                Data = File.ReadAllBytes(webProjectLocation + "/Images/Seed/admin.jpg"),
+                Type = "images/png"
+            };
             context.Images.AddOrUpdate(
                 defaultImage,
                 adminImage
@@ -93,6 +104,11 @@ namespace SportsWorld.Data.Migrations
                         country = context.Countries.Local.SingleOrDefault(item => item.Name == countryName);
                     }
 
+                    var userImagePath = string.Format("{0}/Images/Seed/Users/{1}.jpg", webProjectLocation, userIndex + 1);
+                    var imageData = File.ReadAllBytes(userImagePath);
+                    //var binaryContent = Convert.ToBase64String(imageData);
+                    //var imageBase64 = "data,{0}{1}"
+
                     var user = new AppUser
                     {
                         UserName = userName,
@@ -100,7 +116,7 @@ namespace SportsWorld.Data.Migrations
                         FirstName = firstName,
                         LastName = lastName,
                         Country = country,
-                        Image = new Image() { Path = string.Format("~/Images/Users/{0}.jpg", userIndex + 1) }
+                        Image = new Image { Data = imageData, Type = "image/jpeg" }
                     };
                     isSuccess = userManager.Create(user, userName).Succeeded;
                     if (isSuccess)
