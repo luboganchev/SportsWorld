@@ -23,7 +23,7 @@ namespace SportsWorld.Models
 
         public DateTime DateCreated { get; set; }
 
-        public int Type { get; set; }
+        public EnumFieldTypes Type { get; set; }
 
         public int CityID { get; set; }
 

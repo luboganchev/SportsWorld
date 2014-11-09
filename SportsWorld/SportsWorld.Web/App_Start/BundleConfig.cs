@@ -14,6 +14,15 @@ namespace SportsWorld.Web
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryUI").Include(
+                        "~/Scripts/jquery-ui.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/fieldCreate").Include(
+                        "~/Scripts/Company/FieldCreate.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/slider").Include(
+                        "~/Scripts/bootstrap-slider.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -27,9 +36,15 @@ namespace SportsWorld.Web
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/jqueryUiStyle").Include(
+                        "~/Content/jquery-ui.css"));
+
+            bundles.Add(new StyleBundle("~/Content/slider").Include(
+                        "~/Content/slider.css"));
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

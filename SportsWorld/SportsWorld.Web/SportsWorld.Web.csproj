@@ -193,6 +193,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEngineConfig.cs" />
+    <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
+    <Compile Include="Areas\Company\Controllers\BaseCompanyController.cs" />
+    <Compile Include="Areas\Company\Controllers\FieldController.cs" />
+    <Compile Include="Areas\Company\Models\CreateFieldViewModel.cs" />
+    <Compile Include="Areas\Company\Models\MineFieldGridViewModel.cs" />
+    <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -219,10 +226,14 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\slider.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\default.png" />
+    <Content Include="Images\loader.gif" />
     <Content Include="Images\Seed\admin.jpg" />
     <Content Include="Images\Seed\default.png" />
     <Content Include="Images\Seed\Users\1.jpg" />
@@ -325,13 +336,23 @@
     <Content Include="Images\Seed\Users\97.jpg" />
     <Content Include="Images\Seed\Users\98.jpg" />
     <Content Include="Images\Seed\Users\99.jpg" />
+    <Content Include="Scripts\bootstrap-slider.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Data\countries.json" />
+    <Content Include="Areas\Administration\Views\web.config" />
+    <Content Include="Areas\Company\Views\web.config" />
+    <Content Include="Areas\User\Views\web.config" />
+    <Content Include="Areas\Company\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Company\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Company\Views\Field\Create.cshtml" />
+    <Content Include="Areas\Company\Views\Field\GetMineFields.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Company\FieldCreate.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -383,6 +404,14 @@
     <Content Include="Views\Account\_RegisterAccountPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Administration\Controllers\" />
+    <Folder Include="Areas\Administration\Models\" />
+    <Folder Include="Areas\Administration\Views\Shared\" />
+    <Folder Include="Areas\Company\Views\BaseCompany\" />
+    <Folder Include="Areas\User\Controllers\" />
+    <Folder Include="Areas\User\Models\" />
+    <Folder Include="Areas\User\Views\Shared\" />
+    <Folder Include="Scripts\Common\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

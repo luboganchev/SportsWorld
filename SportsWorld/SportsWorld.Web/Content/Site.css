@@ -38,3 +38,29 @@ textarea {
 .register-thumbnail-text {
     color: white;
 }
+
+.ui-menu .ui-menu-item a,
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {
+    font-weight: normal;
+    margin: -1px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.ui-autocomplete-loading {
+    background: white url(../../../../Images/loader.gif) right center no-repeat;
+}
+
+.restricted-max-width {
+    max-width: 100%;
+}
+
+.ratio {
+	position: relative;
+	width: 100%;
+	height: 0;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
