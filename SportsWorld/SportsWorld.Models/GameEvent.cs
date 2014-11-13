@@ -28,6 +28,8 @@ namespace SportsWorld.Models
         [StringLength(128)]
         public string CreatorID { get; set; }
 
+        public virtual AppUser Creator { get; set; }
+
         public virtual Field Field { get; set; }
 
         public virtual ICollection<Participant> Participants { get; set; }

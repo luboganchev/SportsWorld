@@ -1,8 +1,6 @@
 ﻿namespace SportsWorld.Web.Models
 {
-    using SportsWorld.Models;
     using SportsWorld.Web.Infrastructure.Filters;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web;
 

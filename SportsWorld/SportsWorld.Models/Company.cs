@@ -38,6 +38,8 @@ namespace SportsWorld.Models
 
         public virtual Image Image { get; set; }
 
+        public virtual Country Country { get; set; }
+
         public virtual ICollection<Field> Fields { get; set; }
     }
 }

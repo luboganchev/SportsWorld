@@ -1,0 +1,49 @@
+﻿@model SportsWorld.Web.Areas.Company.Models.CompanyDetailsViewModel
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title text-center">Edit company data</h3>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm("Edit", "Company", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.ID)
+            <div class="form-group">
+                @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.Name)
+                    @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.CountryID, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.CountryID, new SelectList(Model.Countries, "ID", "Name").ToArray(), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.EstablishedYear, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.EstablishedYear, new { min = "1800", max = "2200" })
+                    @Html.ValidationMessageFor(m => m.EstablishedYear, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.CompanyLogo, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.CompanyLogo, new { Name = "CompanyLogo" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="submit" id="updateButton" class="btn btn-success btn-block" value="Update" />
+                </div>
+                <div class="col-md-6">
+                    <input type="button" id="cancel" class="btn btn-danger btn-block" value="Cancel" />
+                </div>
+            </div>
+        }
+    </div>
+</div>

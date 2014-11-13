@@ -11,7 +11,7 @@
         public FieldDetailsViewModel()
         {
             Comments = new HashSet<Comment>();
-            GameEvents = new HashSet<GameEvent>();
+            GameEvents = new HashSet<FieldEventViewModel>();
         }
 
         public string Description { get; set; }
@@ -22,7 +22,7 @@
 
         public float FieldRating { get; set; }
 
-        public ICollection<GameEvent> GameEvents { get; set; }
+        public ICollection<FieldEventViewModel> GameEvents { get; set; }
 
         public override void CreateMappings(IConfiguration configuration)
         {
@@ -33,7 +33,21 @@
                 .ForMember(x => x.ImageType, opt => opt.MapFrom(m => m.Image.Type))
                 .ForMember(x => x.ImageData, opt => opt.MapFrom(m => m.Image.Data))
                 .ForMember(x => x.Comments, opt => opt.MapFrom(m => m.Comments.OrderByDescending(c => c.PostedOn)))
-                .ForMember(x => x.FieldRating, opt => opt.MapFrom(m => m.FieldRatings.Count > 0 ? m.FieldRatings.Average(r => r.Value) : 0));
+                .ForMember(x => x.FieldRating, opt => opt.MapFrom(m => m.FieldRatings.Count > 0 ? m.FieldRatings.Average(r => r.Value) : 0))
+                .ForMember(x => x.GameEvents, opt => opt.MapFrom(
+                    m => m.GameEvents
+                        .Where(ev => ev.FieldID == m.ID)
+                        .Select(ev =>
+                        new FieldEventViewModel
+                        {
+                            ID = ev.ID,
+                            Start = ev.StartTime,
+                            End = ev.EndTime,
+                            Title = ev.Creator.UserName,
+                            Description = "Reserved"
+                        })
+                    )
+                 );
         }
     }
 }

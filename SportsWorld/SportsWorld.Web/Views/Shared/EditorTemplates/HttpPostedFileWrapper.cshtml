@@ -1,3 +1,7 @@
 ﻿@model HttpPostedFileWrapper
 
-<input type="file" name="Image" value="Browse" accept="image/*" />
+@{
+    var name = ViewBag.Name ?? "Image";
+}
+
+<input type="file" name="@name" value="Browse" accept="image/*" />

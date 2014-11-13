@@ -100,7 +100,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-10">
-                        @Html.TextArea("Message", new { id = "MessageBox", @class = "form-control restricted-max-width", rows = "2"})
+                        @Html.TextArea("Message", new { id = "MessageBox", @class = "form-control restricted-max-width", rows = "2" })
                     </div>
                     <div class="col-md-2">
                         <button type="button" id="SendMessageButton" class="btn btn-primary">Send</button>
@@ -110,18 +110,42 @@
         </div>
     </div>
     <div class="col-md-6">
-
+        @(Html.Kendo().Scheduler<SportsWorld.Web.Areas.Company.Models.FieldEventViewModel>()
+            .Name("scheduler")
+            .Date(DateTime.Now)
+            .StartTime(new DateTime(2014, 1, 1, 1, 00, 00))
+            .Height(400)
+            .Views(views =>
+            {
+                views.DayView();
+                views.WeekView(weekView => weekView.Selected(true));
+                views.MonthView();
+                views.AgendaView();
+            })
+            .DataSource(d => d
+                .Model(m =>
+                {
+                    m.Id(f => f.ID);
+                })
+                .Read("Read", "Event")
+                //.Destroy("Destroy", "Scheduler")
+                .Update("Update", "Event")
+            )
+            .BindTo(Model.GameEvents)
+        )
     </div>
 </div>
 
 @section Styles {
     @Styles.Render("~/Content/jqueryUiStyle")
     @Styles.Render("~/Content/slider")
+    @Styles.Render("~/Content/kendo")
 }
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jqueryUI")
+    @Scripts.Render("~/bundles/kendo")
     @Scripts.Render("~/bundles/slider")
     @Scripts.Render("~/bundles/fieldCreate")
     @Scripts.Render("~/bundles/fieldDetails")

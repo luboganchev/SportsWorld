@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
 </head>
@@ -17,7 +18,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Sports World", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @if (!Request.IsAuthenticated)
+                {
+                    @Html.ActionLink("Sports World", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                }
+                @if (Request.IsAuthenticated && User.IsInRole("companyAgent"))
+                {
+                    @Html.ActionLink("Sports World", "Index", "Company", new { area = "Company" }, new { @class = "navbar-brand" })
+                } 
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -31,7 +39,7 @@
                         <li>@Html.ActionLink("Add New Field", "Create", "Field", new { Area = "Company" }, null)</li>
                         <li>@Html.ActionLink("My Fields", "GetMineFields", "Field", new { Area = "Company" }, null)</li>
                         <li>@Html.ActionLink("Reports", "GetMineFields", "Field", new { Area = "Company" }, null)</li>
-                        <li>@Html.ActionLink("Company Info", "GetMineFields", "Field", new { Area = "Company" }, null)</li>
+                        <li>@Html.ActionLink("Company Info", "Index", "Company", new { Area = "Company" }, null)</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -46,7 +54,6 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

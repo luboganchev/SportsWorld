@@ -3,6 +3,7 @@
     using AutoMapper;
     using SportsWorld.Models;
     using SportsWorld.Web.Infrastructure.Mapping;
+    using SportsWorld.Web.Utils;
     using System;
 
     public abstract class BaseFieldViewModel: IHaveCustomMappings
@@ -31,7 +32,7 @@
             {
                 if (this.image == null && this.ImageType != null && this.ImageData != null)
                 {
-                    this.image = GetBase64(this.ImageType, this.ImageData);
+                    this.image = DataModelsHelper.GetBase64(this.ImageType, this.ImageData);
                 }
 
                 return this.image;
@@ -46,14 +47,6 @@
 
         public virtual void CreateMappings(IConfiguration configuration)
         {
-        }
-
-        protected virtual string GetBase64(string imageType, byte[] imageData)
-        {
-            var binaryContent = Convert.ToBase64String(imageData);
-            var imageBase64 = string.Format("data:{0};base64,{1}", imageType, binaryContent);
-
-            return imageBase64;
         }
     }
 }
