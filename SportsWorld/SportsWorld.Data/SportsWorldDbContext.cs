@@ -61,6 +61,8 @@ namespace SportsWorld.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<City>()
                 .HasMany(e => e.Fields)
                 .WithRequired(e => e.City)
@@ -123,10 +125,6 @@ namespace SportsWorld.Data
                 .HasMany(e => e.TeamMembers)
                 .WithRequired(e => e.Team)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
-            modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
-            modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
         }
     }
 }

@@ -19,6 +19,8 @@ namespace SportsWorld.Models
         [StringLength(128)]
         public string AuthorID { get; set; }
 
+        public virtual AppUser Author { get; set; }
+
         public int FieldID { get; set; }
 
         public virtual Field Field { get; set; }

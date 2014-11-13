@@ -20,6 +20,9 @@ namespace SportsWorld.Web
             bundles.Add(new ScriptBundle("~/bundles/fieldCreate").Include(
                         "~/Scripts/Company/FieldCreate.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/fieldDetails").Include(
+                        "~/Scripts/Company/FieldDetails.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/slider").Include(
                         "~/Scripts/bootstrap-slider.js"));
 

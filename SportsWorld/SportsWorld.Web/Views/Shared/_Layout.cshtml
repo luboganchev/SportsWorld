@@ -21,9 +21,18 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (!Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole("companyAgent"))
+                    {
+                        <li>@Html.ActionLink("Add New Field", "Create", "Field", new { Area = "Company" }, null)</li>
+                        <li>@Html.ActionLink("My Fields", "GetMineFields", "Field", new { Area = "Company" }, null)</li>
+                        <li>@Html.ActionLink("Reports", "GetMineFields", "Field", new { Area = "Company" }, null)</li>
+                        <li>@Html.ActionLink("Company Info", "GetMineFields", "Field", new { Area = "Company" }, null)</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

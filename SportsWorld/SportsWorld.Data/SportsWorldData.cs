@@ -41,14 +41,6 @@
             }
         }
 
-        public IRepository<Microsoft.AspNet.Identity.EntityFramework.IdentityRole> Roles
-        {
-            get
-            {
-                return this.GetRepository<IdentityRole>();
-            }
-        }
-
         public IRepository<Image> Images
         {
             get

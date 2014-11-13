@@ -1,0 +1,14 @@
+﻿@model string
+
+@{
+    var attributes = new RouteValueDictionary
+    {
+        { "class", "form-control"}
+    };
+    if (ViewBag.Id != null)
+    {
+        attributes.Add("Id", ViewBag.Id);
+    }
+}
+
+@Html.TextBoxFor(model => model, attributes)

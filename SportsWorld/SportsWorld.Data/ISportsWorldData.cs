@@ -14,8 +14,6 @@
 
         IRepository<AppUser> Users { get; }
 
-        IRepository<IdentityRole> Roles { get; }
-
         IRepository<CardInfo> CardInfoes { get; }
 
         IRepository<City> Cities { get; }

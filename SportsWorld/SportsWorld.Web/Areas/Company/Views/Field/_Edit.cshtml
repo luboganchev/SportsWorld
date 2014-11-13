@@ -1,0 +1,26 @@
+﻿@model SportsWorld.Web.Areas.Company.Models.CreateEditFieldViewModel
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Edit field</h3>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm("", "", FormMethod.Post, new { id = "editDataForm", enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+        {
+            <span class="text-danger" id="serverMessage"></span>
+            
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.ID)
+            @Html.EditorForModel()
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="button" id="updateButton" class="btn btn-success btn-block" value="Update" />
+                </div>
+                <div class="col-md-6">
+                    <input type="button" id="cancel" class="btn btn-danger btn-block" value="Cancel" />
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -197,7 +197,10 @@
     <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
     <Compile Include="Areas\Company\Controllers\BaseCompanyController.cs" />
     <Compile Include="Areas\Company\Controllers\FieldController.cs" />
-    <Compile Include="Areas\Company\Models\CreateFieldViewModel.cs" />
+    <Compile Include="Areas\Company\Models\BaseFieldViewModel.cs" />
+    <Compile Include="Areas\Company\Models\CreateEditFieldViewModel.cs" />
+    <Compile Include="Areas\Company\Models\EditFieldViewModel.cs" />
+    <Compile Include="Areas\Company\Models\FieldDetailsViewModel.cs" />
     <Compile Include="Areas\Company\Models\MineFieldGridViewModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -209,7 +212,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\HelperExtensions.cs" />
+    <Compile Include="Infrastructure\Helpers\HtmlExtensions.cs" />
     <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
@@ -226,6 +229,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\slider.css" />
     <Content Include="favicon.ico" />
@@ -344,11 +349,14 @@
     <Content Include="Areas\Company\Views\web.config" />
     <Content Include="Areas\User\Views\web.config" />
     <Content Include="Areas\Company\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Company\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Company\Views\Field\Create.cshtml" />
     <Content Include="Areas\Company\Views\Field\GetMineFields.cshtml" />
+    <Content Include="Areas\Company\Views\Field\Details.cshtml" />
+    <Content Include="Areas\Company\Views\Field\_Edit.cshtml" />
+    <Content Include="Areas\Company\Views\Shared\EditorTemplates\CreateEditFieldViewModel.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Company\FieldCreate.js" />
+    <Content Include="Scripts\Company\FieldDetails.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -402,6 +410,11 @@
     <Content Include="Views\Account\RegisterOptions.cshtml" />
     <Content Include="Views\Account\RegisterCompany.cshtml" />
     <Content Include="Views\Account\_RegisterAccountPartial.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\HttpPostedFileWrapper.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EnumFieldTypes.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultilineText.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Int32.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Controllers\" />
@@ -413,6 +426,7 @@
     <Folder Include="Areas\User\Views\Shared\" />
     <Folder Include="Scripts\Common\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

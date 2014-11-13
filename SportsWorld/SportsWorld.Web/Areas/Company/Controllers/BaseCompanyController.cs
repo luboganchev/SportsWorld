@@ -3,7 +3,7 @@
     using SportsWorld.Data;
     using System.Web.Mvc;
 
-    //[Authorize(Roles = "admin, companyAgent")]
+    [Authorize(Roles = "admin, companyAgent")]
     public abstract class BaseCompanyController : Controller
     {
         protected ISportsWorldData data;

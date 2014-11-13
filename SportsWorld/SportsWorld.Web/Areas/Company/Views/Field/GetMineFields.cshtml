@@ -3,19 +3,18 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="col-sm-6 col-lg-6 col-md-6">
             <div class="thumbnail">
-                <a href="~/User/BeerDetails.aspx?id=@item.ID" title="@item.Name">
-                    <img src="@(item.Image!=null? item.Image: "~Images/default.png")" />
+                <a href="~/Company/Field/Details/@item.ID" title="@item.Name">
+                    <div class="ratio img-rounded" style="background-image: url('@(item.Image!=null? item.Image: Url.Content("~/Images/default.png"))')">
+                    </div>
                 </a>
                 <div class="caption">
                     <h4 class="pull-right">
                         Field type: @item.Type
                     </h4>
                     <h4 class="truncate" style="height: 40px">
-                        <a href='~/User/BeerDetails.aspx?id=@item.ID'>
-                            @item.Name (@item.CityName, @item.CountryName)
-                        </a>
+                        @Html.ActionLink(string.Format("{0}({1}, {2})", item.Name, item.CityName, item.CountryName), "Details", "Field", new { Area = "Company"}, null)
                     </h4>
                 </div>
                 <div class="row">
@@ -58,7 +57,7 @@
                         </p>
                     </div>
                 </div>
-                <a href='<%#: "~/User/BeerDetails.aspx?id=" + Item.ID %>' class="btn btn-info btn-block">View</a>
+                <a href="~/Company/Field/Details/@item.ID" class="btn btn-info btn-block">View</a>
             </div>
         </div>
     }
