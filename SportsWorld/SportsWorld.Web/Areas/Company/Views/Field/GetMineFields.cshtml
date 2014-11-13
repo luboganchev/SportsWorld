@@ -10,29 +10,39 @@
                     </div>
                 </a>
                 <div class="caption">
-                    <h4 class="pull-right">
-                        Field type: @item.Type
-                    </h4>
-                    <h4 class="truncate" style="height: 40px">
-                        @Html.ActionLink(string.Format("{0}({1}, {2})", item.Name, item.CityName, item.CountryName), "Details", "Field", new { Area = "Company"}, null)
-                    </h4>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h4 class="truncate" style="height: 40px">
+                                <strong class="text-primary">@Html.ActionLink(string.Format("{0} ({1}, {2})", item.Name, item.CityName, item.CountryName), "Details", "Field", new { Area = "Company" }, null)</strong>
+                            </h4>
+                        </div>
+                        <div class="col-md-5">
+                            <h4 class="pull-right">
+                                <strong class="text-primary">Field type: </strong>
+                                @Html.DisplayFor(m => item.Type)
+                            </h4>
+                        </div>
+                    </div> 
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <p>
-                            Hour price: @item.PricePerHour
+                            <strong class="text-primary">Hour price:</strong>
+                            @Html.DisplayFor(m => item.PricePerHour)
                         </p>
                     </div>
                     <div class="col-md-6 text-right">
                         <p>
-                            Max people: @item.Capacity
+                            <strong class="text-primary">Max people:</strong>
+                            @Html.DisplayFor(m => item.Capacity)
                         </p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <p>
-                            Company name: @Html.DisplayFor(m => item.CompanyName)
+                            <strong class="text-primary">Company name:</strong>
+                            @Html.DisplayFor(m => item.CompanyName)
                         </p>
                     </div>
                     <div class="col-md-6 text-right">
@@ -48,12 +58,14 @@
                 <div class="row">
                     <div class="col-md-7">
                         <p>
-                            @item.DateCreated
+                            <strong class="text-primary">Created on: </strong>
+                            @Html.DisplayFor(m => item.DateCreated)
                         </p>
                     </div>
                     <div class="col-md-5 text-right">
                         <p>
-                            Comments: @item.CommentsCount
+                            <strong class="text-primary">Comments:</strong>
+                            @Html.DisplayFor(m => item.CommentsCount)
                         </p>
                     </div>
                 </div>

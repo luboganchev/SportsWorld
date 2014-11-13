@@ -1,5 +1,23 @@
 ﻿(function (sportsWorld, $, undefined) {
     sportsWorld.fieldDetails = function (id) {
+        $('#SendMessageButton').click(function () {
+            if ($('#MessageBox').val().length == 0) {
+                $('#ErrorMessage').text("You can't send empty message").show().fadeOut(5000);
+            } else {
+                var data = {
+                    message: $('#MessageBox').val()
+                };
+
+                $.post('/Company/Field/SendMessage/' + id, data, function (data) {
+                    if (data.Success) {
+                        window.location.reload();
+                    } else {
+                        $('#ErrorMessage').text(data.Message).show().fadeOut(5000);
+                    }
+                });
+            }
+        });
+
         $('#EditButton').click(function () {
             if ($('#EditFieldPartial').is(':empty')) {
                 $('#EditFieldPartial')
@@ -12,18 +30,31 @@
                     $($form).validate();
 
                     $('#updateButton').on('click', function () {
-                        if($form.valid()) {
-                            $.post("/Company/Field/Edit/", $form.serialize(), function (data) {
-                                if (data.Success=="false") {
+                        if ($form.valid()) {
+                            var token = $('[name=__RequestVerificationToken]').val();
+                            var headers = {};
+                            headers["__RequestVerificationToken"] = token;
+
+                            $.ajax( {
+                                url: '/Company/Field/Edit/',
+                                type: 'POST',
+                                headers: headers,
+                                data: new FormData($form[0]),
+                                processData: false,
+                                contentType: false
+                            }).done(function (data) {
+                                if (!data.Success) {
                                     $("#serverMessage").text(data.Message)
                                         .show().fadeOut(10000);
 
                                     $('html, body').animate({ scrollTop: $("#EditFieldPartial").offset().top }, 2000);
                                 } else {
+                                    window.location.reload();
+
                                     $('#EditButton').show();
                                     $('#EditFieldPartial').hide();
                                 }
-                            })
+                            });
                         }
                     });
 
@@ -35,10 +66,6 @@
             } else {
                 $('#EditFieldPartial').show();
                 hideEditButton();
-            }
-
-            function updateView(data) {
-                //TODO: Update Values
             }
 
             function hideEditButton() {

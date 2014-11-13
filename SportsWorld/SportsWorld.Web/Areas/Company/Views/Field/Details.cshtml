@@ -10,45 +10,67 @@
     <div class="col-md-6">
         <div class="row">
             <div class="col-md-6">
-                Location: @Model.CityName, @Model.CountryName
+                <p>
+                    <strong class="text-primary">Location:</strong>
+                    @Model.CityName, @Model.CountryName
+                </p>
             </div>
             <div class="col-md-6">
-                Created: @Model.DateCreated
+                <p>
+                    <strong class="text-primary">Created:</strong>
+                    @Html.DisplayFor(m => Model.DateCreated)
+                </p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                Capacity: @Model.Capacity
+                <p>
+                    <strong class="text-primary">Capacity:</strong>
+                    @Html.DisplayFor(m => Model.Capacity)
+                </p>
             </div>
             <div class="col-md-6">
-                Price per hour: @Model.PricePerHour
+                <p>
+                    <strong class="text-primary">Price per hour:</strong>
+                    @Html.DisplayFor(m => Model.PricePerHour)
+                </p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                Total events: @Model.GameEvents.Count
+                <p>
+                    <strong class="text-primary">Total events:</strong>
+                    @Html.DisplayFor(m => Model.GameEvents.Count)
+                </p>
             </div>
             <div class="col-md-6">
-                Total earned money: @Model.TotalEarned
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-offset-6 col-md-6">
-                <div class="col-md-6">
-                    @Html.Rating(Model.FieldRating, 5)
-                </div>
-                <div class="col-md-6">
-                    @Model.FieldRating/5
-                </div>
+                <p>
+                    <strong class="text-primary">Total earned money:</strong>
+                    @Html.DisplayFor(m => Model.TotalEarned)
+                </p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                @Model.Description
+                <p>
+                    @Html.Rating(Model.FieldRating, 5)
+                    <strong class="text-primary">@Html.DisplayFor(m => Model.FieldRating)/5</strong>
+                </p>
+
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    <strong class="text-primary">Description:</strong>
+                    @Html.DisplayFor(m => Model.Description)
+                </p>
             </div>
         </div>
     </div>
 </div>
+<br />
 <div class="row">
     <div class="col-md-12">
         <div id="EditFieldPartial"></div>
@@ -59,17 +81,33 @@
         <input type="button" class="btn btn-warning btn-block" id="EditButton" value="Edit" />
     </div>
 </div>
+<br />
 <div class="row">
     <div class="col-md-6">
-        @foreach (var comment in Model.Comments)
-        {
-            <p>
-                @comment.Content
-                <span>
-                    Posted on: @comment.PostedOn by: @comment.Author.UserName
-                </span>
-            </p>
-        }
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title text-center">Comments</h3>
+            </div>
+            <div class="panel-body ">
+                <div class="max-height-with-scroll">
+                    @Html.Partial("_Comments", Model.Comments)
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <span id="ErrorMessage" class="text-danger text-center"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        @Html.TextArea("Message", new { id = "MessageBox", @class = "form-control restricted-max-width", rows = "2"})
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" id="SendMessageButton" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col-md-6">
 

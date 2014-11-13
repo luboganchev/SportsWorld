@@ -199,7 +199,6 @@
     <Compile Include="Areas\Company\Controllers\FieldController.cs" />
     <Compile Include="Areas\Company\Models\BaseFieldViewModel.cs" />
     <Compile Include="Areas\Company\Models\CreateEditFieldViewModel.cs" />
-    <Compile Include="Areas\Company\Models\EditFieldViewModel.cs" />
     <Compile Include="Areas\Company\Models\FieldDetailsViewModel.cs" />
     <Compile Include="Areas\Company\Models\MineFieldGridViewModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
@@ -354,6 +353,8 @@
     <Content Include="Areas\Company\Views\Field\Details.cshtml" />
     <Content Include="Areas\Company\Views\Field\_Edit.cshtml" />
     <Content Include="Areas\Company\Views\Shared\EditorTemplates\CreateEditFieldViewModel.cshtml" />
+    <Content Include="Areas\Company\Views\Shared\DisplayTemplates\Float.cshtml" />
+    <Content Include="Areas\Company\Views\Field\_Comments.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Company\FieldCreate.js" />
     <Content Include="Scripts\Company\FieldDetails.js" />
@@ -415,6 +416,8 @@
     <Content Include="Views\Shared\EditorTemplates\EnumFieldTypes.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\MultilineText.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Int32.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Decimal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Controllers\" />
@@ -426,7 +429,6 @@
     <Folder Include="Areas\User\Views\Shared\" />
     <Folder Include="Scripts\Common\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

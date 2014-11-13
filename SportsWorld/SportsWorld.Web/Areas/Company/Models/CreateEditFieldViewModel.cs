@@ -52,6 +52,9 @@
 
             configuration.CreateMap<Field, CreateEditFieldViewModel>()
                 .ForMember(x => x.Image, opt => opt.Ignore());
+
+            configuration.CreateMap<Field, CreateEditFieldViewModel>()
+                .ForMember(x => x.CityInfo, opt => opt.MapFrom(m => m.City.Name + ", " + m.City.Country.Name));
         }
     }
 }

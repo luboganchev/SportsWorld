@@ -13,7 +13,7 @@
                 throw new ArgumentException("Scale should be bigger than value");
             }
 
-            var paragraph = new TagBuilder("p");
+            var span = new TagBuilder("span");
             var fullStar = new TagBuilder("span");
             fullStar.AddCssClass("glyphicon");
             fullStar.AddCssClass("glyphicon-star");
@@ -21,7 +21,7 @@
             int integerValue = Convert.ToInt32(value);
             for (int i = 0; i < integerValue; i++)
             {
-                paragraph.InnerHtml += fullStar;
+                span.InnerHtml += fullStar;
             }
 
             var emptyStar = new TagBuilder("span");
@@ -31,10 +31,10 @@
             int emptyStarsCount = scale - integerValue;
             for (int i = 0; i < emptyStarsCount; i++)
             {
-                paragraph.InnerHtml += emptyStar;
+                span.InnerHtml += emptyStar;
             }
 
-            return new MvcHtmlString(paragraph.ToString());
+            return new MvcHtmlString(span.ToString());
         }
     }
 }

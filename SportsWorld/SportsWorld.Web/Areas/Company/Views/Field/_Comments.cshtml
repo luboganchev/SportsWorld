@@ -1,0 +1,9 @@
+﻿@model ICollection<SportsWorld.Models.Comment>
+
+@foreach (var comment in Model)
+{
+    <blockquote>
+        <p>@comment.Content</p>
+        <small>Posted on: @Html.DisplayFor(m => comment.PostedOn) by: @Html.DisplayFor(m => comment.Author.UserName) </small>
+    </blockquote>
+}

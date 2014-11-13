@@ -32,6 +32,7 @@
                 .ForMember(x => x.CountryName, opt => opt.MapFrom(m => m.City.Country.Name))
                 .ForMember(x => x.ImageType, opt => opt.MapFrom(m => m.Image.Type))
                 .ForMember(x => x.ImageData, opt => opt.MapFrom(m => m.Image.Data))
+                .ForMember(x => x.Comments, opt => opt.MapFrom(m => m.Comments.OrderByDescending(c => c.PostedOn)))
                 .ForMember(x => x.FieldRating, opt => opt.MapFrom(m => m.FieldRatings.Count > 0 ? m.FieldRatings.Average(r => r.Value) : 0));
         }
     }

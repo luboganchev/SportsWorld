@@ -69,3 +69,8 @@ textarea {
 .big-text {
     font-size: 130%;
 }
+
+.max-height-with-scroll {
+    max-height: 200px;
+    overflow-y: scroll;
+}

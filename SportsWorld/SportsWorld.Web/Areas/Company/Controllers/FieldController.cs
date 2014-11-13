@@ -59,13 +59,15 @@
             {
                 try
                 {
-                    var newField = this.GetBindedField(model);
-                    if (newField == null)
+                    var updatedViewModel = this.UpdateCreateEditViewModel(model);
+                    if (updatedViewModel == null)
                     {
                         ModelState.AddModelError("", "Data for City is not correct should be in format: City, Country");
                         return View(model);
                     }
 
+                    var newField = Mapper.Map<CreateEditFieldViewModel, Field>(updatedViewModel);
+                    newField.CompanyID = this.CompanyID;
                     newField.DateCreated = DateTime.Now;
                     this.data.Fields.Add(newField);
 
@@ -94,7 +96,7 @@
             var model = this.GetFieldData(id);
             if (model == null)
             {
-                this.RedirectToAction("GetMineFields");
+                return this.RedirectToAction("GetMineFields");
             }
 
             var viewModel = Mapper.Map<FieldDetailsViewModel>(model);
@@ -107,7 +109,7 @@
             var model = this.GetFieldData(id);
             if (model == null)
             {
-                this.RedirectToAction("GetMineFields");
+                return this.RedirectToAction("GetMineFields");
             }
 
             var viewModel = Mapper.Map<CreateEditFieldViewModel>(model);
@@ -123,8 +125,19 @@
             {
                 try
                 {
-                    var updatedField = this.GetBindedField(model);
-                    if (updatedField == null)
+                    var currentFieldFromDb = this.GetFieldData(model.ID);
+                    if (currentFieldFromDb == null)
+                    {
+                        return Json(
+                            new
+                            {
+                                Success = false,
+                                Message = "You dont have permission to update this field."
+                            });
+                    }
+
+                    var updatedViewModel = this.UpdateCreateEditViewModel(model);
+                    if (updatedViewModel == null)
                     {
                         return Json(
                             new
@@ -134,18 +147,18 @@
                             });
                     }
 
-                    this.data.Fields.Update(updatedField);
+                    currentFieldFromDb = Mapper.Map<CreateEditFieldViewModel, Field>(updatedViewModel, currentFieldFromDb);
+                    this.data.Fields.Update(currentFieldFromDb);
 
                     if (model.Image != null)
                     {
-                        updatedField.Image = DataModelsHelper.GetResizedImageInstance(model.Image);
+                        currentFieldFromDb.Image = DataModelsHelper.GetResizedImageInstance(model.Image);
                     }
 
                     this.data.SaveChanges();
+                    var returnedModel = Mapper.Map<CreateEditFieldViewModel>(currentFieldFromDb);
 
-                    var returnedModel = Mapper.Map<FieldDetailsViewModel>(updatedField);
-
-                    return Json(returnedModel);
+                    return Json(new { Success = true, Message = "Success", data = returnedModel });
                 }
                 catch (InvalidOperationException exception)
                 {
@@ -158,7 +171,35 @@
             return Json(new { Success = false, Message = "Submit data is not valid." });
         }
 
-        private Field GetBindedField(CreateEditFieldViewModel model)
+        [HttpPost]
+        public ActionResult SendMessage(string message, int id = -1)
+        {
+            var model = this.GetFieldData(id);
+            if (model == null)
+            {
+                return Json(new { Message = "You cant post message for this field" });
+            }
+
+            if (string.IsNullOrEmpty(message))
+            {
+                return Json(new { Message = "You cant send empty message!" });
+            }
+
+            var newComment = new Comment
+            {
+                FieldID = model.ID,
+                PostedOn = DateTime.Now,
+                AuthorID = User.Identity.GetUserId(),
+                Content = message.Trim()
+            };
+
+            model.Comments.Add(newComment);
+            this.data.SaveChanges();
+
+            return Json(new { Success = "true", id = model.ID });
+        }
+
+        private CreateEditFieldViewModel UpdateCreateEditViewModel(CreateEditFieldViewModel model)
         {
             string[] givenCityData = model.CityInfo.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             if (givenCityData.Length < 2)
@@ -197,10 +238,8 @@
             }
 
             model.CityID = existingCity.ID;
-            var newField = Mapper.Map<CreateEditFieldViewModel, Field>(model);
-            newField.CompanyID = this.CompanyID;
 
-            return newField;
+            return model;
         }
 
         private Field GetFieldData(int id)
