@@ -2,6 +2,7 @@
 {
     using AutoMapper;
     using SportsWorld.Models;
+    using SportsWorld.Web.Models;
 
     public class MineFieldGridViewModel : BaseFieldViewModel
     {

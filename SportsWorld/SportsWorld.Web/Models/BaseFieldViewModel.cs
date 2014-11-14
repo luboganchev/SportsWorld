@@ -1,4 +1,4 @@
-﻿namespace SportsWorld.Web.Areas.Company.Models
+﻿namespace SportsWorld.Web.Models
 {
     using AutoMapper;
     using SportsWorld.Models;

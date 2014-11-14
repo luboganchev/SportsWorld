@@ -203,12 +203,21 @@
     <Compile Include="Areas\Company\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Company\Controllers\EventController.cs" />
     <Compile Include="Areas\Company\Controllers\FieldController.cs" />
-    <Compile Include="Areas\Company\Models\BaseFieldViewModel.cs" />
+    <Compile Include="Areas\Company\Models\FieldCompanyDetailsViewModel.cs" />
+    <Compile Include="Areas\User\Controllers\RatingController.cs" />
+    <Compile Include="Areas\User\Models\RatingViewModel.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Models\BaseFieldViewModel.cs" />
     <Compile Include="Areas\Company\Models\CompanyDetailsViewModel.cs" />
     <Compile Include="Areas\Company\Models\CreateEditFieldViewModel.cs" />
-    <Compile Include="Areas\Company\Models\FieldDetailsViewModel.cs" />
+    <Compile Include="Models\CommentViewModel.cs" />
+    <Compile Include="Models\FieldDetailsViewModel.cs" />
     <Compile Include="Areas\Company\Models\FieldEventViewModel.cs" />
     <Compile Include="Areas\Company\Models\MineFieldGridViewModel.cs" />
+    <Compile Include="Areas\User\Controllers\BaseUserController.cs" />
+    <Compile Include="Areas\User\Controllers\FieldController.cs" />
+    <Compile Include="Areas\User\Models\FieldUserDetailsViewModel.cs" />
+    <Compile Include="Areas\User\Models\FieldViewModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -454,6 +463,8 @@
     <Content Include="Content\Kendo\Uniform\slider-v.gif" />
     <Content Include="Content\Kendo\Uniform\sprite.png" />
     <Content Include="Content\Kendo\Uniform\sprite_2x.png" />
+    <Content Include="Scripts\Common\Comments.js" />
+    <Content Include="Scripts\Common\rating.js" />
     <Content Include="Scripts\Company\CompanyDetails.js" />
     <Content Include="Scripts\Kendo\kendo.all.min.js" />
     <Content Include="Scripts\Kendo\kendo.aspnetmvc.min.js" />
@@ -581,13 +592,16 @@
     <Content Include="Areas\Company\Views\Field\_Edit.cshtml" />
     <Content Include="Areas\Company\Views\Shared\EditorTemplates\CreateEditFieldViewModel.cshtml" />
     <Content Include="Areas\Company\Views\Shared\DisplayTemplates\Float.cshtml" />
-    <Content Include="Areas\Company\Views\Field\_Comments.cshtml" />
+    <Content Include="Views\Shared\_Comments.cshtml" />
     <Content Include="Scripts\Kendo\kendo.all.min.js.map" />
     <Content Include="Scripts\Kendo\kendo.aspnetmvc.min.js.map" />
     <Content Include="Content\Kendo\images\kendoui.ttf" />
     <Content Include="Content\Kendo\images\kendoui.woff" />
     <Content Include="Areas\Company\Views\Company\Index.cshtml" />
     <Content Include="Areas\Company\Views\Company\_Edit.cshtml" />
+    <Content Include="Areas\User\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\User\Views\Field\GetAll.cshtml" />
+    <Content Include="Areas\User\Views\Field\Details.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Company\FieldCreate.js" />
     <Content Include="Scripts\Company\FieldDetails.js" />
@@ -658,9 +672,10 @@
     <Folder Include="Areas\Administration\Controllers\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Areas\User\Controllers\" />
-    <Folder Include="Areas\User\Models\" />
+    <Folder Include="Areas\User\Views\Comment\" />
+    <Folder Include="Areas\User\Views\Rating\" />
     <Folder Include="Areas\User\Views\Shared\" />
+    <Folder Include="Scripts\User\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

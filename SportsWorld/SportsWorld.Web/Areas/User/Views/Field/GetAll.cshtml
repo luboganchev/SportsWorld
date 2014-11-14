@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SportsWorld.Web.Areas.User.Models.FieldViewModel>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <h3 class="text-center alert alert-info big-text thumbnail-header">
+                    @Html.ActionLink(string.Format("{0} ({1}, {2})", item.Name, item.CityName, item.CountryName), "Details", "Field", new { Area = "Company" }, null)
+                </h3>
+                <a href="~/User/Field/Details/@item.ID" title="@item.Name">
+                    <div class="ratio img-rounded" style="background-image: url('@(item.Image!=null? item.Image: Url.Content("~/Images/default.png"))')">
+                    </div>
+                </a>
+                <div class="alert alert-info no-bottom-space">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>
+                                <span class="white-text">Type:</span>
+                                <strong>@Html.DisplayFor(m => item.Type)</strong>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+                                <span class="white-text">Hour price:</span>
+                                <strong>@Html.DisplayFor(m => item.PricePerHour)</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="no-bottom-space">
+                                <span class="white-text">Capacity:</span>
+                                <strong>@Html.DisplayFor(m => item.Capacity)</strong>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="no-bottom-space">
+                                <span class="white-text">Rating:</span>
+                                @Html.Rating(item.Rating, 5)
+                            </p>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    }
+</div>

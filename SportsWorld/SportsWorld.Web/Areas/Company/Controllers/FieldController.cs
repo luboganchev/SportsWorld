@@ -99,7 +99,7 @@
                 return this.RedirectToAction("GetMineFields");
             }
 
-            var viewModel = Mapper.Map<FieldDetailsViewModel>(model);
+            var viewModel = Mapper.Map<FieldCompanyDetailsViewModel>(model);
 
             return View(viewModel);
         }
@@ -169,34 +169,6 @@
             }
 
             return Json(new { Success = false, Message = "Submit data is not valid." });
-        }
-
-        [HttpPost]
-        public ActionResult SendMessage(string message, int id = -1)
-        {
-            var model = this.GetFieldData(id);
-            if (model == null)
-            {
-                return Json(new { Message = "You cant post message for this field" });
-            }
-
-            if (string.IsNullOrEmpty(message))
-            {
-                return Json(new { Message = "You cant send empty message!" });
-            }
-
-            var newComment = new Comment
-            {
-                FieldID = model.ID,
-                PostedOn = DateTime.Now,
-                AuthorID = User.Identity.GetUserId(),
-                Content = message.Trim()
-            };
-
-            model.Comments.Add(newComment);
-            this.data.SaveChanges();
-
-            return Json(new { Success = "true", id = model.ID });
         }
 
         private CreateEditFieldViewModel UpdateCreateEditViewModel(CreateEditFieldViewModel model)

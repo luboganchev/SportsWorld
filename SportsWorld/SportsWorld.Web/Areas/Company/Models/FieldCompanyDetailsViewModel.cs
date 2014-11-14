@@ -2,31 +2,24 @@
 {
     using AutoMapper;
     using SportsWorld.Models;
-    using SportsWorld.Web.Infrastructure.Mapping;
+    using SportsWorld.Web.Models;
     using System.Collections.Generic;
     using System.Linq;
 
-    public class FieldDetailsViewModel : BaseFieldViewModel
+    public class FieldCompanyDetailsViewModel : FieldDetailsViewModel
     {
-        public FieldDetailsViewModel()
+        public FieldCompanyDetailsViewModel()
         {
-            Comments = new HashSet<Comment>();
             GameEvents = new HashSet<FieldEventViewModel>();
         }
 
-        public string Description { get; set; }
-
         public decimal TotalEarned { get; set; }
-
-        public ICollection<Comment> Comments { get; set; }
-
-        public float FieldRating { get; set; }
 
         public ICollection<FieldEventViewModel> GameEvents { get; set; }
 
         public override void CreateMappings(IConfiguration configuration)
         {
-            configuration.CreateMap<Field, FieldDetailsViewModel>()
+            configuration.CreateMap<Field, FieldCompanyDetailsViewModel>()
                 .ForMember(x => x.CityName, opt => opt.MapFrom(m => m.City.Name))
                 .ForMember(x => x.CompanyName, opt => opt.MapFrom(m => m.Company.Name))
                 .ForMember(x => x.CountryName, opt => opt.MapFrom(m => m.City.Country.Name))

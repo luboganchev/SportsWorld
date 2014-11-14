@@ -18,8 +18,8 @@ namespace SportsWorld.Web
         private static void RegisterScriptBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
-                        "~/Scripts/kendo/kendo.all.min.js",
-                        "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
+                        "~/Scripts/Kendo/kendo.all.min.js",
+                        "~/Scripts/Kendo/kendo.aspnetmvc.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/Kendo/jquery.min.js"));
@@ -36,6 +36,12 @@ namespace SportsWorld.Web
 
             bundles.Add(new ScriptBundle("~/bundles/fieldDetails").Include(
                         "~/Scripts/Company/FieldDetails.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/comments").Include(
+                        "~/Scripts/Common/Comments.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/rating").Include(
+                        "~/Scripts/Common/rating.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/companyDetails").Include(
                         "~/Scripts/Company/CompanyDetails.js"));

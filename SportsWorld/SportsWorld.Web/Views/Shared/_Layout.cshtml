@@ -25,7 +25,11 @@
                 @if (Request.IsAuthenticated && User.IsInRole("companyAgent"))
                 {
                     @Html.ActionLink("Sports World", "Index", "Company", new { area = "Company" }, new { @class = "navbar-brand" })
-                } 
+                }
+                @if (Request.IsAuthenticated && User.IsInRole("user"))
+                {
+                    @Html.ActionLink("Sports World", "GetAll", "Field", new { area = "User" }, new { @class = "navbar-brand" })
+                }
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -40,6 +44,12 @@
                         <li>@Html.ActionLink("My Fields", "GetMineFields", "Field", new { Area = "Company" }, null)</li>
                         <li>@Html.ActionLink("Reports", "GetMineFields", "Field", new { Area = "Company" }, null)</li>
                         <li>@Html.ActionLink("Company Info", "Index", "Company", new { Area = "Company" }, null)</li>
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole("user"))
+                    {
+                        <li>@Html.ActionLink("Fields", "GetAll", "Field", new { Area = "User" }, null)</li>
+                        <li>@Html.ActionLink("All Teams", "GetAll", "Team", new { Area = "User" }, null)</li>
+                        <li>@Html.ActionLink("My Team", "GetMine", "Team", new { Area = "User" }, null)</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
