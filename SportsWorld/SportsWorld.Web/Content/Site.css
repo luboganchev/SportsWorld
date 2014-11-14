@@ -128,3 +128,11 @@ textarea {
 #star-rating {
     display: inline-block;
 }
+
+table > tbody > tr.table-sm-padding > td {
+    padding:2px;
+}
+
+.max-width-expressly {
+    width:100%;
+}

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SportsWorld.Models.GameEvent>
+
+<table class="table table-bordered table-responsive no-bottom-space">
+    <thead>
+        <tr>
+            <th></th>
+            @{
+                var days = 7;
+                var currentDayOfWeek = DateTime.Today;
+                for (int i = 0; i < days; i++)
+                {
+                    <th class="text-center">
+                        @currentDayOfWeek.DayOfWeek
+                    </th>
+                    currentDayOfWeek = currentDayOfWeek.AddDays(1);
+                }
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var startTime = 8;
+            var endTime = 9;
+            var hours = 16;
+
+            for (int i = 0; i < hours; i++)
+            {
+                var currentDay = DateTime.Now.DayOfYear;
+                <tr class="table-sm-padding">
+                    <td class="text-center">
+                        @startTime:00 - @endTime:00
+                    </td>
+                    @for (int j = 0; j < days; j++)
+                    {
+                        <td class="text-center">
+                            @{
+                        var gameEvent = Model.FirstOrDefault(ev => ev.StartTime.Hour == startTime && ev.EndTime.Hour == endTime && ev.StartTime.DayOfYear == currentDay);
+                        if (gameEvent != null)
+                        {
+                            <a href="#" class="btn btn-danger btn-xs max-width-expressly"><strong>Reserved</strong></a>
+                        }
+                        else
+                        {
+                            var fieldID = Model.FirstOrDefault().FieldID;
+                            <a href="~/User/GameEvent/Reserve?@fieldID&@currentDay&@startTime" class="btn btn-success btn-xs max-width-expressly"><strong>Free</strong></a>
+                        }
+                        currentDay++;
+                            }
+                        </td>
+
+                    }
+                </tr>
+                    startTime++;
+                    endTime++;
+            }
+        }
+
+    </tbody>
+</table>

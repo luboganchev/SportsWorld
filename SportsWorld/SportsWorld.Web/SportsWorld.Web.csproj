@@ -204,8 +204,10 @@
     <Compile Include="Areas\Company\Controllers\EventController.cs" />
     <Compile Include="Areas\Company\Controllers\FieldController.cs" />
     <Compile Include="Areas\Company\Models\FieldCompanyDetailsViewModel.cs" />
+    <Compile Include="Areas\User\Controllers\GameEventController.cs" />
     <Compile Include="Areas\User\Controllers\RatingController.cs" />
     <Compile Include="Areas\User\Models\RatingViewModel.cs" />
+    <Compile Include="Areas\User\Models\ReserveGameViewModel.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Models\BaseFieldViewModel.cs" />
     <Compile Include="Areas\Company\Models\CompanyDetailsViewModel.cs" />
@@ -602,6 +604,8 @@
     <Content Include="Areas\User\Views\_ViewStart.cshtml" />
     <Content Include="Areas\User\Views\Field\GetAll.cshtml" />
     <Content Include="Areas\User\Views\Field\Details.cshtml" />
+    <Content Include="Areas\User\Views\Field\_Schedule.cshtml" />
+    <Content Include="Areas\User\Views\GameEvent\Reserve.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Company\FieldCreate.js" />
     <Content Include="Scripts\Company\FieldDetails.js" />
@@ -672,10 +676,7 @@
     <Folder Include="Areas\Administration\Controllers\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Areas\User\Views\Comment\" />
-    <Folder Include="Areas\User\Views\Rating\" />
     <Folder Include="Areas\User\Views\Shared\" />
-    <Folder Include="Scripts\User\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
