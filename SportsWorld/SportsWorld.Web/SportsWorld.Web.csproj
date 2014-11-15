@@ -205,7 +205,10 @@
     <Compile Include="Areas\Company\Controllers\FieldController.cs" />
     <Compile Include="Areas\Company\Models\FieldCompanyDetailsViewModel.cs" />
     <Compile Include="Areas\User\Controllers\GameEventController.cs" />
+    <Compile Include="Areas\User\Controllers\PaymentController.cs" />
     <Compile Include="Areas\User\Controllers\RatingController.cs" />
+    <Compile Include="Areas\User\Models\GameEventDataModel.cs" />
+    <Compile Include="Areas\User\Models\PaymentDataViewModel.cs" />
     <Compile Include="Areas\User\Models\RatingViewModel.cs" />
     <Compile Include="Areas\User\Models\ReserveGameViewModel.cs" />
     <Compile Include="Controllers\CommentController.cs" />
@@ -606,6 +609,10 @@
     <Content Include="Areas\User\Views\Field\Details.cshtml" />
     <Content Include="Areas\User\Views\Field\_Schedule.cshtml" />
     <Content Include="Areas\User\Views\GameEvent\Reserve.cshtml" />
+    <Content Include="Areas\User\Views\Shared\DisplayTemplates\DateTimeWithHours.cshtml" />
+    <Content Include="Areas\User\Views\Shared\_PaymentData.cshtml" />
+    <Content Include="Areas\User\Views\Shared\EditorTemplates\EnumCardTypes.cshtml" />
+    <Content Include="Areas\User\Views\Shared\EditorTemplates\Int64.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Company\FieldCreate.js" />
     <Content Include="Scripts\Company\FieldDetails.js" />
@@ -671,12 +678,13 @@
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Decimal.cshtml" />
     <Content Include="Scripts\Kendo\jquery.min.map" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Controllers\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Areas\User\Views\Shared\" />
+    <Folder Include="Areas\User\Views\Payment\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

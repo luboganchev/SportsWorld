@@ -45,6 +45,8 @@
 
         public byte[] ImageData { get; set; }
 
+        public float FieldRating { get; set; }
+
         public virtual void CreateMappings(IConfiguration configuration)
         {
         }

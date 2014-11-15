@@ -3,6 +3,7 @@
     using AutoMapper;
     using SportsWorld.Models;
     using SportsWorld.Web.Models;
+    using System.Linq;
 
     public class MineFieldGridViewModel : BaseFieldViewModel
     {
@@ -16,7 +17,8 @@
                 .ForMember(x => x.CountryName, opt => opt.MapFrom(m => m.City.Country.Name))
                 .ForMember(x => x.ImageType, opt => opt.MapFrom(m => m.Image.Type))
                 .ForMember(x => x.ImageData, opt => opt.MapFrom(m => m.Image.Data))
-                .ForMember(x => x.CommentsCount, opt => opt.MapFrom(m => m.Comments.Count));
+                .ForMember(x => x.CommentsCount, opt => opt.MapFrom(m => m.Comments.Count))
+                .ForMember(x => x.FieldRating, opt => opt.MapFrom(m => m.FieldRatings.Count > 0 ? (float)m.FieldRatings.Average(r => r.Value) : 0));
         }
     }
 }

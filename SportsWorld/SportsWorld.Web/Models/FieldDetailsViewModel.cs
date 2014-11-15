@@ -16,7 +16,5 @@
         public string Description { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
-
-        public float FieldRating { get; set; }
     }
 }

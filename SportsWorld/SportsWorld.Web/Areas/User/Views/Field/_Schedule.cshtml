@@ -42,7 +42,7 @@
                         else
                         {
                             var fieldID = Model.FirstOrDefault().FieldID;
-                            <a href="~/User/GameEvent/Reserve?@fieldID&@currentDay&@startTime" class="btn btn-success btn-xs max-width-expressly"><strong>Free</strong></a>
+                            <a href="~/User/GameEvent/Reserve?fieldId=@fieldID&dayOfYear=@currentDay&startHour=@startTime" class="btn btn-success btn-xs max-width-expressly"><strong>Free</strong></a>
                         }
                         currentDay++;
                             }

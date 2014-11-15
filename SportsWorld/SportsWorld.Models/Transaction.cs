@@ -17,7 +17,7 @@ namespace SportsWorld.Models
 
         public int GameEventID { get; set; }
 
-        public int ApprovalStatus { get; set; }
+        public EnumApprovalStatus ApprovalStatus { get; set; }
 
         public virtual GameEvent GameEvent { get; set; }
     }

@@ -7,8 +7,38 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12 well well-sm">
-                @Html.DisplayFor(m => m.Field)
+                <strong>Field name:</strong> @Html.DisplayFor(m => m.Field.Name)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 well well-sm">
+                <strong>From:</strong> @Html.DisplayFor(m => m.StartTime)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 well well-sm">
+                <strong>To:</strong> @Html.DisplayFor(m => m.EndTime)
             </div>
         </div>
     </div>
 </div>
+@using (Html.BeginForm("Reserve", "GameEvent", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(m => m.FieldID)
+    @Html.HiddenFor(m => m.StartTime)
+
+    @Html.Partial("_PaymentData", new SportsWorld.Web.Areas.User.Models.PaymentDataViewModel
+    {
+        CVV = Model.CVV,
+        DateValid = Model.DateValid,
+        Number = Model.Number,
+        Type = Model.Type
+    })
+    <div class="row">
+        <div class="col-md-12">
+            <input type="submit" id="PayButton" class="btn btn-success btn-block btn-lg" value="Pay" />
+        </div>
+    </div>
+}

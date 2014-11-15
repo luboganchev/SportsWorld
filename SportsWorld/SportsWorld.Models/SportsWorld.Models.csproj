@@ -82,6 +82,8 @@
     <Compile Include="Comment.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Country.cs" />
+    <Compile Include="EnumApprovalStatus.cs" />
+    <Compile Include="EnumCardTypes.cs" />
     <Compile Include="EnumFieldTypes.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="FieldRating.cs" />

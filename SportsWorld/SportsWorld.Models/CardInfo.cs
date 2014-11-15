@@ -11,18 +11,18 @@ namespace SportsWorld.Models
     {
         public int ID { get; set; }
 
-        public int Type { get; set; }
+        public EnumCardTypes Type { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string Number { get; set; }
+        [Range(1000000000000000, 9999999999999999)]
+        public long Number { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime DateValid { get; set; }
 
         [Required]
-        [StringLength(10)]
-        public string CVV { get; set; }
+        [Range(100, 9999)]
+        public int CVV { get; set; }
 
         [Required]
         [StringLength(128)]
