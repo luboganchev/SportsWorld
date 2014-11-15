@@ -18,19 +18,20 @@ namespace SportsWorld.Web.Controllers
 
         public ActionResult Index()
         {
-            return View();
-        }
+            if (this.User.IsInRole("companyAgent"))
+            {
+                return this.RedirectToAction("GetMineFields", "Field", new { Area = "Company" });
+            }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            if (this.User.IsInRole("user"))
+            {
+                return this.RedirectToAction("GetAll", "Field", new { Area = "User" });
+            }
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+            if (this.User.IsInRole("admin"))
+            {
+                return this.RedirectToAction("Index", "Field", new { Area = "User" });
+            }
 
             return View();
         }

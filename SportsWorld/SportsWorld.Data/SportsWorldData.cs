@@ -17,6 +17,14 @@
             this.repositories = new Dictionary<Type, object>();
         }
 
+        public ISportsWorldDbContext Context 
+        {
+            get
+            {
+                return this.context;
+            }
+        }
+
         public IRepository<Comment> Comments
         {
             get

@@ -6,6 +6,8 @@
 
     public interface ISportsWorldData
     {
+        ISportsWorldDbContext Context { get; }
+
         IRepository<Comment> Comments { get; }
 
         IRepository<Country> Countries { get; }

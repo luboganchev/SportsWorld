@@ -24,11 +24,15 @@
                 }
                 @if (Request.IsAuthenticated && User.IsInRole("companyAgent"))
                 {
-                    @Html.ActionLink("Sports World", "Index", "Company", new { area = "Company" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Sports World", "GetMineFields", "Field", new { area = "Company" }, new { @class = "navbar-brand" })
                 }
                 @if (Request.IsAuthenticated && User.IsInRole("user"))
                 {
                     @Html.ActionLink("Sports World", "GetAll", "Field", new { area = "User" }, new { @class = "navbar-brand" })
+                }
+                @if (Request.IsAuthenticated && User.IsInRole("admin"))
+                {
+                    @Html.ActionLink("Sports World", "Index", "Fields", new { area = "Administration" }, new { @class = "navbar-brand" })
                 }
             </div>
             <div class="navbar-collapse collapse">
@@ -36,7 +40,6 @@
                     @if (!Request.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
                     }
                     @if (Request.IsAuthenticated && User.IsInRole("companyAgent"))
                     {
@@ -50,6 +53,16 @@
                         <li>@Html.ActionLink("Fields", "GetAll", "Field", new { Area = "User" }, null)</li>
                         <li>@Html.ActionLink("All Teams", "GetAll", "Team", new { Area = "User" }, null)</li>
                         <li>@Html.ActionLink("My Team", "GetMine", "Team", new { Area = "User" }, null)</li>
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Users", "Index", "User", new { Area = "Administration" }, null)</li>
+                        <li>@Html.ActionLink("Fields", "Index", "Field", new { Area = "Administration" }, null)</li>
+                        <li>@Html.ActionLink("Cities", "Index", "City", new { Area = "Administration" }, null)</li>
+                        <li>@Html.ActionLink("Countries", "Index", "Country", new { Area = "Administration" }, null)</li>
+                        <li>@Html.ActionLink("GameEvents", "Index", "GameEvent", new { Area = "Administration" }, null)</li>
+                        <li>@Html.ActionLink("Messages", "Index", "Message", new { Area = "Administration" }, null)</li>
+                        <li>@Html.ActionLink("Teams", "Index", "Teams", new { Area = "Administration" }, null)</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
