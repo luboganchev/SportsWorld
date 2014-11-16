@@ -227,6 +227,7 @@
     <Compile Include="Areas\User\Models\PaymentDataViewModel.cs" />
     <Compile Include="Areas\User\Models\RatingViewModel.cs" />
     <Compile Include="Areas\User\Models\ReserveGameViewModel.cs" />
+    <Compile Include="Areas\User\Models\ScheduleViewModel.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Models\BaseFieldViewModel.cs" />
     <Compile Include="Areas\Company\Models\CompanyDetailsViewModel.cs" />

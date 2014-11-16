@@ -35,5 +35,11 @@ namespace SportsWorld.Web.Controllers
 
             return View();
         }
+
+        [OutputCache(Duration = 3600)]
+        public ActionResult Error()
+        {
+            return View();
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SportsWorld.Models.GameEvent>
+﻿@model SportsWorld.Web.Areas.User.Models.ScheduleViewModel
 
 <table class="table table-bordered table-responsive no-bottom-space">
     <thead>
@@ -34,14 +34,14 @@
                     {
                         <td class="text-center">
                             @{
-                        var gameEvent = Model.FirstOrDefault(ev => ev.StartTime.Hour == startTime && ev.EndTime.Hour == endTime && ev.StartTime.DayOfYear == currentDay);
+                        var gameEvent = Model.GameEvents.FirstOrDefault(ev => ev.StartTime.Hour == startTime && ev.EndTime.Hour == endTime && ev.StartTime.DayOfYear == currentDay);
                         if (gameEvent != null)
                         {
                             <a href="#" class="btn btn-danger btn-xs max-width-expressly"><strong>Reserved</strong></a>
                         }
                         else
                         {
-                            var fieldID = Model.FirstOrDefault().FieldID;
+                            var fieldID = Model.FieldID;
                             <a href="~/User/GameEvent/Reserve?fieldId=@fieldID&dayOfYear=@currentDay&startHour=@startTime" class="btn btn-success btn-xs max-width-expressly"><strong>Free</strong></a>
                         }
                         currentDay++;

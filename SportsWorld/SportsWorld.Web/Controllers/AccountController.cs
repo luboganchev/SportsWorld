@@ -146,6 +146,7 @@ namespace SportsWorld.Web.Controllers
         }
 
         [AllowAnonymous]
+        [OutputCache(Duration = 3600)]
         public ActionResult RegisterOptions()
         {
             var registerOptions = new HashSet<RegisterOptionsViewModel> 

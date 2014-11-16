@@ -45,7 +45,7 @@
                 }
                 @if (Request.IsAuthenticated && User.IsInRole("admin"))
                 {
-                    @Html.ActionLink("Sports World", "Index", "Fields", new { area = "Administration" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Sports World", "Index", "User", new { area = "Administration" }, new { @class = "navbar-brand" })
                 }
             </div>
             <div class="navbar-collapse collapse">
