@@ -3,16 +3,21 @@
     using SportsWorld.Models;
     using SportsWorld.Web.Infrastructure.Mapping;
     using System.ComponentModel.DataAnnotations;
+    
 
-    public class CityViewModel : IMapFrom<City>
+    public class MessageViewModel : IMapFrom<Message>
     {
+        [Required]
         public int ID { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string Name { get; set; }
+        [StringLength(4000)]
+        public string Content { get; set; }
 
         [Required]
-        public int CountryID { get; set; }
+        public string SenderID { get; set; }
+
+        [Required]
+        public string RecipientID { get; set; }
     }
 }

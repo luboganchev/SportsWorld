@@ -7,6 +7,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web;
     using System.Collections.Generic;
+    using System;
 
     public class FieldViewModel: IHaveCustomMappings
     {
@@ -23,7 +24,6 @@
         public int CityID { get; set; }
 
         [Required]
-        [DataType(DataType.MultilineText)]
         [StringLength(50)]
         public string Description { get; set; }
 
@@ -37,10 +37,8 @@
         [Display(Name = "Price per hour ($)")]
         public decimal PricePerHour { get; set; }
 
-        //[FileSize(1048576)]
-        //[DataType(DataType.Upload)]
-        //[Display(Name = "Field image")]
-        //public HttpPostedFileWrapper Image { get; set; }
+        [Required]
+        public int CompanyID { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {
@@ -48,7 +46,8 @@
                 .ForMember(x => x.CityID, opt => opt.MapFrom(m => m.CityID));
 
             configuration.CreateMap<FieldViewModel, Field>()
-                .ForMember(x => x.CityID, opt => opt.MapFrom(m => m.CityID));
+                .ForMember(x => x.CityID, opt => opt.MapFrom(m => m.CityID))
+                .ForMember(x => x.DateCreated, opt => opt.UseValue(DateTime.Now));
         }
     }
 }

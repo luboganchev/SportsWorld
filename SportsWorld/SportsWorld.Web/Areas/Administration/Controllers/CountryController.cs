@@ -8,9 +8,9 @@
     using System.Collections;
     using System.Web.Mvc;
 
-    public class CityController : AdminKendoGridController
+    public class CountryController : AdminKendoGridController
     {
-        public CityController(ISportsWorldData data)
+        public CountryController(ISportsWorldData data)
             : base(data)
         {
         }
@@ -22,37 +22,37 @@
 
         protected override IEnumerable GetData()
         {
-            return this.data.Cities.All()
+            return this.data.Countries.All()
                 .Project()
-                .To<CityViewModel>();
+                .To<CountryViewModel>();
         }
 
         protected override T GetById<T>(object id)
         {
-            return this.data.Cities.Find(id) as T;
+            return this.data.Countries.Find(id) as T;
         }
 
         [HttpPost]
-        public ActionResult Create([DataSourceRequest]DataSourceRequest request, CityViewModel model)
+        public ActionResult Create([DataSourceRequest]DataSourceRequest request, CountryViewModel model)
         {
-            var dbModel = base.Create<City>(model);
+            var dbModel = base.Create<Country>(model);
             if (dbModel != null) model.ID = dbModel.ID;
             return this.GridOperation(model, request);
         }
 
         [HttpPost]
-        public ActionResult Update([DataSourceRequest]DataSourceRequest request, CityViewModel model)
+        public ActionResult Update([DataSourceRequest]DataSourceRequest request, CountryViewModel model)
         {
-            base.Update<City, CityViewModel>(model, model.ID);
+            base.Update<Country, CountryViewModel>(model, model.ID);
             return this.GridOperation(model, request);
         }
 
         [HttpPost]
-        public ActionResult Destroy([DataSourceRequest]DataSourceRequest request, CityViewModel model)
+        public ActionResult Destroy([DataSourceRequest]DataSourceRequest request, CountryViewModel model)
         {
             if (model != null && ModelState.IsValid)
             {
-                this.data.Cities.Delete(model.ID);
+                this.data.Countries.Delete(model.ID);
                 this.data.SaveChanges();
             }
 

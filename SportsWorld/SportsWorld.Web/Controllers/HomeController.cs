@@ -30,7 +30,7 @@ namespace SportsWorld.Web.Controllers
 
             if (this.User.IsInRole("admin"))
             {
-                return this.RedirectToAction("Index", "Field", new { Area = "User" });
+                return this.RedirectToAction("Index", "User", new { Area = "Administration" });
             }
 
             return View();

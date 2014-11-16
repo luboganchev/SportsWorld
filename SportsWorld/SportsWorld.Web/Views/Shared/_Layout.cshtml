@@ -10,7 +10,20 @@
     @RenderSection("styles", required: false)
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    @{
+        var navbarClass = string.Empty;
+        
+        if(Request.IsAuthenticated && User.IsInRole("admin"))
+        {
+            navbarClass = "navbar-default";
+        } 
+        else 
+        {
+            navbarClass = "navbar-inverse";
+        }   
+    }
+
+    <div class="navbar @navbarClass navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -62,7 +75,7 @@
                         <li>@Html.ActionLink("Countries", "Index", "Country", new { Area = "Administration" }, null)</li>
                         <li>@Html.ActionLink("GameEvents", "Index", "GameEvent", new { Area = "Administration" }, null)</li>
                         <li>@Html.ActionLink("Messages", "Index", "Message", new { Area = "Administration" }, null)</li>
-                        <li>@Html.ActionLink("Teams", "Index", "Teams", new { Area = "Administration" }, null)</li>
+                        <li>@Html.ActionLink("Teams", "Index", "Team", new { Area = "Administration" }, null)</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

@@ -1,24 +1,23 @@
 ﻿﻿@using SportsWorld.Web.Areas.Administration.Models;
 @{
-    ViewBag.Title = "Fields";
-    const string ControllerName = "Field";
+    ViewBag.Title = "Teams";
+    const string ControllerName = "Team";
 }
 
 <h3 class="text-center thumbnail-header alert alert-info big-text">@ViewBag.Title</h3>
 
 @(Html.Kendo()
-    .Grid<FieldViewModel>()
+    .Grid<TeamViewModel>()
     .Name("grid")
     .Columns(cols =>
     {
         cols.Bound(pr => pr.ID);
         cols.Bound(pr => pr.Name);
-        cols.Bound(pr => pr.Description);
-        cols.Bound(pr => pr.Capacity);
-        cols.Bound(pr => pr.CityID);
-        cols.Bound(pr => pr.PricePerHour);
-        cols.Bound(pr => pr.Type);
-        cols.Bound(pr => pr.CompanyID);
+        cols.Bound(pr => pr.DateCreated);
+        cols.Bound(pr => pr.Wins);
+        cols.Bound(pr => pr.Draws);
+        cols.Bound(pr => pr.Losses);
+        cols.Bound(pr => pr.FounderID);
         cols.Command(com => com.Edit()).Title("Edit");
         cols.Command(com => com.Destroy()).Title("Delete");
     })
@@ -28,7 +27,7 @@
     .Groupable()
     .Filterable()
     .Editable(edit => edit.Mode(GridEditMode.InCell))
-    .ToolBar(toolbar => 
+    .ToolBar(toolbar =>
     {
         toolbar.Create();
         toolbar.Save();
@@ -36,7 +35,7 @@
     .DataSource(data =>
         data
             .Ajax()
-            .Model(m => 
+            .Model(m =>
             {
                 m.Id(field => field.ID);
                 m.Field(field => field.ID).Editable(false);
@@ -47,3 +46,7 @@
                 .Destroy(destroy => destroy.Action("Destroy", ControllerName).Type(HttpVerbs.Post))
        )
 )
+
+
+
+
