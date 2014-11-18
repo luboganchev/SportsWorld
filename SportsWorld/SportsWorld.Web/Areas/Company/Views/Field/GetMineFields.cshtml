@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-md-7">
                             <h4 class="truncate" style="height: 40px">
-                                <strong class="text-primary">@Html.ActionLink(string.Format("{0} ({1}, {2})", item.Name, item.CityName, item.CountryName), "Details", "Field", new { Area = "Company" }, null)</strong>
+                                <strong class="text-primary">@Html.ActionLink(string.Format("{0} ({1}, {2})", item.Name, item.CityName, item.CountryName), "Details", "Field", new { Area = "Company", id = item.ID }, null)</strong>
                             </h4>
                         </div>
                         <div class="col-md-5">

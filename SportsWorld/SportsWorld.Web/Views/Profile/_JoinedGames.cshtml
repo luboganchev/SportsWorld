@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SportsWorld.Web.Models.JoinedGamesViewModel>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title text-center">Joined Games</h3>
+    </div>
+    <div class="panel-body">
+        @foreach (var game in Model)
+        {
+            var alerClass = string.Empty;
+            if (game.StartTime < DateTime.Now)
+            {
+                alerClass = "alert-danger";
+            }
+            else
+            {
+                alerClass = "alert-success";
+            }
+            
+            <div class="col-sm-3 col-lg-3 col-md-3">
+                <div class="thumbnail">
+                    <div class="alert alert-dismissable @alerClass no-bottom-space">
+                        <p>Field: @game.FieldName</p>
+                        <p>From: @game.StartTime</p>
+                        <p>To: @game.EndTime</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

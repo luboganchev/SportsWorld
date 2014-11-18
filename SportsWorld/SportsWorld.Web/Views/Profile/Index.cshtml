@@ -59,6 +59,12 @@
             </div>
         </div>
     }
+
+    <br />
+    if (Model.JoinedGames.Count() != 0)
+    {
+         @Html.Partial("_JoinedGames", Model.JoinedGames)
+    }
 }
 
 @section Scripts {

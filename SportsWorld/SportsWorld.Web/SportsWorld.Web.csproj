@@ -224,6 +224,7 @@
     <Compile Include="Areas\User\Controllers\PaymentController.cs" />
     <Compile Include="Areas\User\Controllers\RatingController.cs" />
     <Compile Include="Areas\User\Models\GameEventDataModel.cs" />
+    <Compile Include="Areas\User\Models\PageableFieldViewModel.cs" />
     <Compile Include="Areas\User\Models\PaymentDataViewModel.cs" />
     <Compile Include="Areas\User\Models\RatingViewModel.cs" />
     <Compile Include="Areas\User\Models\ReserveGameViewModel.cs" />
@@ -257,6 +258,7 @@
     <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseRegistarViewModel.cs" />
+    <Compile Include="Models\JoinedGamesViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\RegisterCompanyViewModel.cs" />
@@ -723,6 +725,7 @@
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Profile\_JoinedGames.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\User\Views\Payment\" />

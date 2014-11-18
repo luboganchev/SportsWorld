@@ -140,3 +140,9 @@ table > tbody > tr.table-sm-padding > td {
 .jumbotron.no-background {
     background-color: white;
 }
+
+.long-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

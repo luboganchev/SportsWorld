@@ -29,7 +29,11 @@
             if (this.User.IsInRole("user"))
             {
                 var allEvents = this.data.GameEvents.All()
-                    .Where(ev => ev.Participants.Any(p => p.UserID == currentUserId));
+                    .Where(ev => ev.Participants.Any(p => p.UserID == currentUserId))
+                    .OrderBy(ev => ev.StartTime)
+                    .Project()
+                    .To<JoinedGamesViewModel>()
+                    .ToArray();
 
                 var paymentInfo = this.data.CardInfoes.All()
                     .FirstOrDefault(card => card.UserID == currentUserId);

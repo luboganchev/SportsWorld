@@ -1,4 +1,5 @@
-﻿@model SportsWorld.Web.Areas.User.Models.ScheduleViewModel
+﻿@using Microsoft.AspNet.Identity;
+@model SportsWorld.Web.Areas.User.Models.ScheduleViewModel
 
 <table class="table table-bordered table-responsive no-bottom-space">
     <thead>
@@ -22,22 +23,36 @@
             var startTime = 8;
             var endTime = 9;
             var hours = 16;
+            var currentUser = this.User.Identity.GetUserId();
 
             for (int i = 0; i < hours; i++)
             {
                 var currentDay = DateTime.Now.DayOfYear;
+
                 <tr class="table-sm-padding">
                     <td class="text-center">
                         @startTime:00 - @endTime:00
                     </td>
                     @for (int j = 0; j < days; j++)
                     {
+                        DateTime currentDate = new DateTime(DateTime.Now.Year, 1, 1).AddDays(currentDay - 1);
+                        currentDate = currentDate.AddHours(endTime);
+
                         <td class="text-center">
                             @{
                         var gameEvent = Model.GameEvents.FirstOrDefault(ev => ev.StartTime.Hour == startTime && ev.EndTime.Hour == endTime && ev.StartTime.DayOfYear == currentDay);
-                        if (gameEvent != null)
+                        if (gameEvent != null && gameEvent.CreatorID != currentUser)
                         {
                             <a href="#" class="btn btn-danger btn-xs max-width-expressly"><strong>Reserved</strong></a>
+                        }
+                        else if (gameEvent != null && gameEvent.CreatorID == currentUser)
+                        {
+                            <a href="#" class="btn btn-info btn-xs max-width-expressly"><strong>Reserved by you</strong></a>
+                        }
+
+                        else if (gameEvent == null && DateTime.Now > currentDate)
+                        {
+                            <a href="#" class="btn btn-warning btn-xs max-width-expressly"><strong>Past</strong></a>
                         }
                         else
                         {

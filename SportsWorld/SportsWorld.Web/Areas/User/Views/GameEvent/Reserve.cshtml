@@ -20,6 +20,11 @@
                 <strong>To:</strong> @Html.DisplayFor(m => m.EndTime)
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12 well well-sm">
+                <strong>Total price:</strong> @Html.DisplayFor(m => m.Field.PricePerHour)
+            </div>
+        </div>
     </div>
 </div>
 @using (Html.BeginForm("Reserve", "GameEvent", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))

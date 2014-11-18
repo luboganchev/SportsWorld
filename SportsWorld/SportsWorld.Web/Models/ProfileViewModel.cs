@@ -47,7 +47,7 @@
 
         public IEnumerable<Country> Countries { get; set; }
 
-        public IEnumerable<GameEvent> JoinedGames { get; set; }
+        public IEnumerable<JoinedGamesViewModel> JoinedGames { get; set; }
 
         public PaymentDataViewModel PaymentInfo { get; set; }
 

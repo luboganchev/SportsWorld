@@ -213,7 +213,8 @@ namespace SportsWorld.Web.Controllers
                         CountryID = model.CountryID,
                         Email = model.Email,
                         FirstName = model.FirstName,
-                        LastName = model.LastName
+                        LastName = model.LastName,
+                        Avatar = model.Avatar
                     };
 
                     user = this.GetUserFromModel(userModel);
@@ -242,6 +243,8 @@ namespace SportsWorld.Web.Controllers
                         {
                             company.Image = DataModelsHelper.GetResizedImageInstance(model.CompanyLogo);
                         }
+
+                        this.data.SaveChanges();
 
                         return RedirectToAction("Index", "Home");
                     }
