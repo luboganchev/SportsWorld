@@ -229,6 +229,7 @@
     <Compile Include="Areas\User\Models\ReserveGameViewModel.cs" />
     <Compile Include="Areas\User\Models\ScheduleViewModel.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Models\BaseFieldViewModel.cs" />
     <Compile Include="Areas\Company\Models\CompanyDetailsViewModel.cs" />
     <Compile Include="Areas\Company\Models\CreateEditFieldViewModel.cs" />
@@ -257,6 +258,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseRegistarViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\RegisterCompanyViewModel.cs" />
     <Compile Include="Models\RegisterOptionsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -628,9 +630,9 @@
     <Content Include="Areas\User\Views\Field\_Schedule.cshtml" />
     <Content Include="Areas\User\Views\GameEvent\Reserve.cshtml" />
     <Content Include="Areas\User\Views\Shared\DisplayTemplates\DateTimeWithHours.cshtml" />
-    <Content Include="Areas\User\Views\Shared\_PaymentData.cshtml" />
-    <Content Include="Areas\User\Views\Shared\EditorTemplates\EnumCardTypes.cshtml" />
-    <Content Include="Areas\User\Views\Shared\EditorTemplates\Int64.cshtml" />
+    <Content Include="Views\Shared\_PaymentData.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EnumCardTypes.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Int64.cshtml" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administration\Views\Field\Index.cshtml" />
@@ -669,7 +671,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -717,9 +721,12 @@
     <Content Include="Views\Shared\DisplayTemplates\Decimal.cshtml" />
     <Content Include="Scripts\Kendo\jquery.min.map" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\User\Views\Payment\" />
+    <Folder Include="Areas\User\Views\Shared\EditorTemplates\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

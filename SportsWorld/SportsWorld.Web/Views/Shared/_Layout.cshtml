@@ -12,15 +12,15 @@
 <body>
     @{
         var navbarClass = string.Empty;
-        
-        if(Request.IsAuthenticated && User.IsInRole("admin"))
+
+        if (Request.IsAuthenticated && User.IsInRole("admin"))
         {
             navbarClass = "navbar-default";
-        } 
-        else 
+        }
+        else
         {
             navbarClass = "navbar-inverse";
-        }   
+        }
     }
 
     <div class="navbar @navbarClass navbar-fixed-top">
@@ -94,3 +94,4 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
