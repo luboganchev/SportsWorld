@@ -1,5 +1,7 @@
 ﻿@model SportsWorld.Web.Models.RegisterCompanyViewModel
-
+@{
+    ViewBag.Title = "Company Registration";
+}
 <h3 class="text-center alert alert-dismissable alert-success">Company registraion</h3>
 
 @using (Html.BeginForm("RegisterCompany", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))

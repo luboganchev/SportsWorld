@@ -1,5 +1,7 @@
 ﻿@model SportsWorld.Web.Models.RegisterViewModel
-
+@{
+    ViewBag.Title = "User Registration";
+}
 <h3 class="text-center alert alert-dismissable alert-success">Client registraion</h3>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))

@@ -1,5 +1,8 @@
 ﻿@using SportsWorld.Web.Areas.User.Models;
 @model FieldUserDetailsViewModel
+@{
+    ViewBag.Title = string.Format("{0} Details", Model.Name);
+}
 
 <h3 class="text-center alert alert-info big-text">@string.Format("\"{0}\" {1} field, owned by {2}", Model.Name, Model.Type, Model.CompanyName)</h3>
 

@@ -1,5 +1,7 @@
 ﻿@model SportsWorld.Web.Areas.User.Models.PageableFieldViewModel
-
+@{
+    ViewBag.Title = "All fields";
+}
 <div class="row">
     @foreach (var item in Model.Fields)
     {

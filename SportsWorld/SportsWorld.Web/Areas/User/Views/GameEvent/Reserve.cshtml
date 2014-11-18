@@ -1,5 +1,7 @@
 ﻿@model SportsWorld.Web.Areas.User.Models.ReserveGameViewModel
-
+@{
+    ViewBag.Title = string.Format("{0} Reservation", Model.Field.Name);
+}
 <div class="panel panel-success">
     <div class="panel-heading">
         <h3 class="panel-title text-center">Reservation summary</h3>
